@@ -11,6 +11,7 @@ java {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.kotlinx.coroutines.core)
+
     implementation(libs.retrofit)
     implementation(libs.retrofit.adapter.corutines)
     implementation(libs.retrofit.moshi)
