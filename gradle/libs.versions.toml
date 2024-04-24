@@ -86,8 +86,6 @@ koin-test-junit4 = { group = "io.insert-koin", name = "koin-test-junit4", versio
 
 # Coil Compose
 image-coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil-compose" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

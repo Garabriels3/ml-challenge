@@ -23,3 +23,5 @@ rootProject.name = "ML Challenge"
 include(":app")
 include(":design_system")
 include(":network")
+include(":feature")
+include(":feature:products")
