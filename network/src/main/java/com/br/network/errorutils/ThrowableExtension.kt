@@ -14,7 +14,6 @@ internal fun Throwable.toRequestThrowable(): Throwable {
     return when (this) {
         is UnknownHostException,
         is TimeoutException,
-        is InterruptedIOException,
         is SocketTimeoutException,
         is SocketException,
         is ConnectException -> getDefaultThrowable()
