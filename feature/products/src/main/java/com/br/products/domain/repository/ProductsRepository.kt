@@ -5,5 +5,5 @@ import com.br.products.domain.model.ProductItemDomain
 import kotlinx.coroutines.flow.Flow
 
 interface ProductsRepository {
-    fun getProductsPagingData(query: String): Flow<PagingData<ProductItemDomain>>
+    fun getProductsPagingData(query: String, limit: Int): Flow<PagingData<ProductItemDomain>>
 }

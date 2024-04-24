@@ -18,17 +18,18 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
-private const val NETWORK_PAGE_SIZE = 20
-
 class ProductsRepositoryImpl(
     private val service: ProductsService,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ProductsRepository {
 
-    override fun getProductsPagingData(query: String): Flow<PagingData<ProductItemDomain>> {
+    override fun getProductsPagingData(
+        query: String,
+        limit: Int
+    ): Flow<PagingData<ProductItemDomain>> {
         return Pager(
             config = PagingConfig(
-                pageSize = NETWORK_PAGE_SIZE,
+                pageSize = limit,
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { ProductPagingSource(service, query) }
