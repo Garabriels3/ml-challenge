@@ -23,6 +23,12 @@ android {
             )
         }
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.3"
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -35,6 +41,7 @@ android {
 dependencies {
 
     implementation(project(":network"))
+    implementation(project(":design_system"))
     implementation(project(":infra"))
 
     implementation(libs.androidx.core.ktx)
