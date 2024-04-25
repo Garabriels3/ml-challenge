@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -16,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import com.br.design_system.compose.outlinedtextfield.CustomOutlinedTextField
 import com.br.design_system.theme.ColorApp
@@ -29,12 +32,23 @@ fun SearchBarComponent(
     value: String,
     label: String,
     placeholder: String?,
+    searchButtonState: ImeAction,
+    onClickSearchKeyboard: (String) -> Unit,
     onValueChange: (String) -> Unit,
     onSearchFieldClick: () -> Unit,
     onBackNavigation: (() -> Unit)? = null
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
     val initialValue by rememberSaveable(value) { mutableStateOf(value) }
+    val keyBoardOptions = KeyboardOptions(
+        imeAction = searchButtonState
+    )
+    val keyboardActions = KeyboardActions(
+        onSearch = {
+            keyboardController?.hide()
+            onClickSearchKeyboard(initialValue)
+        }
+    )
 
     Box(
         modifier = modifier.background(color = ColorApp.primary)
@@ -55,6 +69,8 @@ fun SearchBarComponent(
             CustomOutlinedTextField(
                 value = initialValue,
                 label = label,
+                keyboardOptions = keyBoardOptions,
+                keyboardActions = keyboardActions,
                 placeholder = placeholder,
                 onValueChange = onValueChange,
                 onSearchFieldClick = onSearchFieldClick
@@ -73,6 +89,8 @@ private fun SearchBarComponentPreview() {
             onValueChange = {},
             label = "Teste",
             placeholder = "Pesquisar",
+            searchButtonState = ImeAction.Search,
+            onClickSearchKeyboard = { },
             onBackNavigation = { },
             onSearchFieldClick = { }
         )

@@ -2,6 +2,7 @@ package com.br.design_system.compose.outlinedtextfield
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
@@ -22,14 +23,15 @@ import com.br.design_system.theme.MlChallengeTheme
 @Composable
 fun CustomOutlinedTextField(
     value: String,
-    onValueChange: (String) -> Unit,
-    onSearchFieldClick: () -> Unit,
     label: String,
     placeholder: String? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
     singleLine: Boolean = true,
     leadingIcon: ImageVector? = null,
-    leadingIconContentDescription: String? = null
+    leadingIconContentDescription: String? = null,
+    onValueChange: (String) -> Unit,
+    onSearchFieldClick: () -> Unit,
 ) {
     OutlinedTextField(
         value = value,
@@ -69,6 +71,7 @@ fun CustomOutlinedTextField(
             }
         },
         keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
         colors = OutlinedTextFieldDefaults.colors(
             unfocusedContainerColor = ColorApp.background,
             focusedContainerColor = ColorApp.background,
@@ -84,10 +87,10 @@ fun CustomOutlinedTextFieldPreview() {
     MlChallengeTheme {
         CustomOutlinedTextField(
             value = "",
-            onValueChange = {},
             label = "Teste",
             placeholder = "Pesquisar",
-            onSearchFieldClick = { }
+            onValueChange = {},
+            onSearchFieldClick = { },
         )
     }
 }
