@@ -36,6 +36,9 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
 
+    implementation(libs.ui)
+    implementation(platform(libs.compose.bom))
+
     // Koin
     implementation(libs.koin.android)
     implementation(libs.koin.core)
