@@ -46,7 +46,6 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-//    implementation(libs.kotlinx.coroutines.core)
     implementation(libs.material3)
 
     implementation(libs.navigation.fragment.ktx)
