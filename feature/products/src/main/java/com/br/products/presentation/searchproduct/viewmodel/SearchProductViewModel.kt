@@ -15,6 +15,14 @@ class SearchProductViewModel : ViewModel() {
 
     private val _uiSideEffect = MutableSingleLiveEvent<SearchProductUiSideEffect>()
 
+    init {
+        _uiState.value = SearchProductUiState.OnResumeState(
+            getCurrentUiModel().copy(
+                productsHistory = listOf("Product 1", "Product 2", "Product 3")
+            )
+        )
+    }
+
     fun handleAction(action: SearchProductUiAction) {
         when (action) {
             is SearchProductUiAction.OnClickProductAction -> {

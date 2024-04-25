@@ -8,7 +8,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.br.design_system.theme.MlChallengeTheme
+import com.br.products.R
 import com.br.products.presentation.searchproduct.view.compose.SearchProductScreen
 import com.br.products.presentation.searchproduct.viewmodel.SearchProductViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -16,6 +18,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class SearchProductFragment : Fragment() {
 
     private val viewModel: SearchProductViewModel by viewModel()
+    private val navController by lazy { requireActivity().findNavController(R.id.products_nav_graph) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
