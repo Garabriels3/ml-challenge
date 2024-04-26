@@ -1,4 +1,4 @@
-package com.br.products.ext
+package com.br.infra.coroutines.ext
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -16,7 +16,3 @@ fun <T> SingleLiveEvent<T>.CollectEffect(lifecycleOwner: LifecycleOwner, block: 
         }
     }
 }
-
-// Precisei colocar essa Extension aqui por motivos de erro de compilação
-// Por alguma motivo que não consegui entender o projeto não estava idendificando a existencia dessa extension
-// precisei colocar ela no modulo de feature mas o correto seria deixar no meu modulo de infra

@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import com.br.design_system.compose.snackbar.SnackBarNotifier
 import com.br.design_system.compose.snackbar.SnackbarStatus
 import com.br.design_system.compose.toolbar.SearchBarComponent
@@ -23,7 +24,7 @@ import com.br.design_system.theme.MlChallengeTheme
 import com.br.design_system.theme.Spacing
 import com.br.infra.connectionchecker.isNetworkAvailable
 import com.br.infra.coroutines.SingleLiveEvent
-import com.br.products.ext.CollectEffect
+import com.br.infra.coroutines.ext.CollectEffect
 import com.br.products.presentation.searchproduct.udf.SearchProductUiAction
 import com.br.products.presentation.searchproduct.udf.SearchProductUiModel
 import com.br.products.presentation.searchproduct.udf.SearchProductUiSideEffect
@@ -34,6 +35,7 @@ import kotlinx.coroutines.launch
 fun SearchProductScreen(
     state: SearchProductUiState,
     effect: SingleLiveEvent<SearchProductUiSideEffect> = SingleLiveEvent(),
+    navController: NavController? = null,
     triggerAction: (SearchProductUiAction) -> Unit,
 ) {
     val snackBarHostState = remember { SnackbarHostState() }
