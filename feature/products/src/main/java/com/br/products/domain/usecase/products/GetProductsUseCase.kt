@@ -5,5 +5,5 @@ import com.br.products.domain.model.ProductItemDomain
 import kotlinx.coroutines.flow.Flow
 
 interface GetProductsUseCase {
-    fun getProducts(productName: String): Flow<PagingData<ProductItemDomain>>
+    operator fun invoke(productName: String): Flow<PagingData<ProductItemDomain>>
 }

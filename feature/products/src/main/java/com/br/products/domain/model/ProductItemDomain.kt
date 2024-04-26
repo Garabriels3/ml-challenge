@@ -7,9 +7,5 @@ data class ProductItemDomain(
     val thumbnail: String,
     val condition: String,
     val availableQuantity: Int,
-    val shipping: ShippingDomain,
-)
-
-data class ShippingDomain(
     val freeShipping: Boolean,
 )

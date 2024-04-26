@@ -13,6 +13,7 @@ object ColorApp {
     val textOnBackgroundDark = Color(0xFFFFFFFF)  // Branco para textos no modo noturno
     val textOnSurface = Color(0xFF000000)  // Preto para textos sobre superfície
     val textOnSurfaceDark = Color(0xFFFFFFFF)  // Branco para textos sobre superfície no modo noturno
+    val textGreen = Color(0xFF388E3C)  // Verde para textos de sucesso
 
     // Cores de Alerta
     val error = Color(0xFFD32F2F)  // Vermelho para erros
@@ -24,6 +25,7 @@ object ColorApp {
 
     // Neutros e Fundos
     val background = Color(0xFFFFFFFF)  // Branco para fundo no modo diurno
+    val backgroundYellow = Color(0xFFE4E4E4)  // Bege escuro para fundo no modo diurno
     val backgroundDark = Color(0xFF121212)  // Fundo escuro para modo noturno
     val surface = Color(0xFFFFFFFF)  // Superfície de cartões no modo diurno
     val surfaceDark = Color(0xFF1E1E1E)  // Superfície de cartões no modo noturno

@@ -18,6 +18,7 @@ import com.br.products.domain.usecase.terms.GetTermsHistoryUseCase
 import com.br.products.domain.usecase.terms.GetTermsHistoryUseCaseImpl
 import com.br.products.domain.usecase.terms.SaveTermsHistoryUseCase
 import com.br.products.domain.usecase.terms.SaveTermsHistoryUseCaseImpl
+import com.br.products.presentation.products.viewmodel.ProductsViewModel
 import com.br.products.presentation.searchproduct.viewmodel.SearchProductViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -44,6 +45,7 @@ class ProductsDI {
 
     private val presentation: Module = module {
         viewModel { SearchProductViewModel(get(), get()) }
+        viewModel { ProductsViewModel(get()) }
     }
 
     fun getModules() = listOf(data, presentation, domain)

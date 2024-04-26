@@ -13,7 +13,8 @@ class ProductPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ProductItemResponse> {
         return try {
             val nextPage = params.key ?: 0
-            val response = service.getProducts(query, params.loadSize, nextPage)
+            val response =
+                service.getProducts(query = query, limit = params.loadSize, offset = nextPage)
 
             LoadResult.Page(
                 data = response.productsItem.map { it.copy(total = response.paging.total) },

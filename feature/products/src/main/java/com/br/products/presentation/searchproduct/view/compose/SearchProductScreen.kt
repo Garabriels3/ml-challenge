@@ -1,9 +1,9 @@
 package com.br.products.presentation.searchproduct.view.compose
 
 import android.annotation.SuppressLint
+import android.os.Bundle
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -17,7 +17,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.NavController
+import androidx.navigation.NavDeepLinkBuilder
 import com.br.design_system.compose.snackbar.SnackBarNotifier
 import com.br.design_system.compose.snackbar.SnackbarStatus
 import com.br.design_system.compose.toolbar.SearchBarComponent
@@ -26,6 +28,7 @@ import com.br.design_system.theme.Spacing
 import com.br.infra.connectionchecker.isNetworkAvailable
 import com.br.infra.coroutines.SingleLiveEvent
 import com.br.infra.coroutines.ext.CollectEffect
+import com.br.products.R
 import com.br.products.presentation.searchproduct.udf.SearchProductUiAction
 import com.br.products.presentation.searchproduct.udf.SearchProductUiModel
 import com.br.products.presentation.searchproduct.udf.SearchProductUiSideEffect
@@ -41,13 +44,13 @@ fun SearchProductScreen(
 ) {
     val snackBarHostState = remember { SnackbarHostState() }
 
-    ObserveUiEffects(effect, snackBarHostState)
+    ObserveUiEffects(effect, snackBarHostState, navController)
     when (state) {
         is SearchProductUiState.OnResumeState -> {
             SearchProductContent(
                 state.uiModel,
                 snackBarHostState,
-                triggerAction
+                triggerAction,
             )
         }
 
@@ -66,7 +69,8 @@ fun SearchProductScreen(
 @Composable
 private fun ObserveUiEffects(
     effect: SingleLiveEvent<SearchProductUiSideEffect>,
-    snackBarHostState: SnackbarHostState
+    snackBarHostState: SnackbarHostState,
+    navController: NavController?,
 ) {
     val coroutineScope = rememberCoroutineScope()
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -74,7 +78,10 @@ private fun ObserveUiEffects(
     effect.CollectEffect(lifecycleOwner) {
         when (it) {
             is SearchProductUiSideEffect.OnNavigateToProductDetailsEffect -> {
-                // navController.navigate("products_nav_graph")
+                navController?.navigate(
+                    R.id.action_searchProductFragment_to_productsFragment,
+                    Bundle().apply { putString("searchedTerm", it.productName) }
+                )
             }
 
             is SearchProductUiSideEffect.OnShowToastEffect -> {
@@ -114,7 +121,6 @@ private fun SearchProductContent(
                     triggerAction(SearchProductUiAction.OnTextChangedAction(it))
                 },
                 searchButtonState = uiModel.isSearchButtonEnabled,
-                onSearchFieldClick = {},
                 onCancelClick = {
                     triggerAction(SearchProductUiAction.OnCancelSearchAction)
                 },

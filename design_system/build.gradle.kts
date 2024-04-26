@@ -44,6 +44,10 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material3)
 
+    // Coil
+    implementation(libs.image.coil.compose)
+
+    // Compose
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
     implementation(libs.ui.graphics)

@@ -7,10 +7,8 @@ import androidx.paging.map
 import com.br.network.errorutils.parseHttpError
 import com.br.products.data.datasource.remote.ProductPagingSource
 import com.br.products.data.model.response.ProductItemResponse
-import com.br.products.data.model.response.ShippingResponse
 import com.br.products.data.service.ProductsService
 import com.br.products.domain.model.ProductItemDomain
-import com.br.products.domain.model.ShippingDomain
 import com.br.products.domain.repository.ProductsRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -50,13 +48,7 @@ class ProductsRepositoryImpl(
             thumbnail = thumbnail,
             condition = condition,
             availableQuantity = availableQuantity,
-            shipping = shipping.toDomain()
-        )
-    }
-
-    private fun ShippingResponse.toDomain(): ShippingDomain {
-        return ShippingDomain(
-            freeShipping = freeShipping
+            freeShipping = shipping.freeShipping
         )
     }
 }

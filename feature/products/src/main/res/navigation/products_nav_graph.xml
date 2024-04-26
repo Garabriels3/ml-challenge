@@ -7,5 +7,20 @@
     <fragment
         android:id="@+id/searchProductFragment"
         android:name="com.br.products.presentation.searchproduct.view.SearchProductFragment"
-        android:label="fragment_search_product" />
+        android:label="fragment_search_product">
+        <action
+            android:id="@+id/action_searchProductFragment_to_productsFragment"
+            app:destination="@id/productsFragment"
+            app:popUpToInclusive="true">
+            <argument
+                android:name="searchedTerm"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.br.products.presentation.products.view.ProductsFragment"
+        android:label="ProductsFragment" >
+    </fragment>
 </navigation>

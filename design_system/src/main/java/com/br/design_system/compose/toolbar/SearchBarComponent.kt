@@ -33,9 +33,9 @@ import com.br.design_system.theme.Spacing
 fun SearchBarComponent(
     value: String,
     placeholder: String?,
-    searchButtonState: ImeAction,
-    onClickSearchKeyboard: (String) -> Unit,
-    onSearchFieldClick: () -> Unit,
+    searchButtonState: ImeAction = ImeAction.None,
+    onClickSearchKeyboard: ((String) -> Unit) = {},
+    onSearchFieldClick: () -> Unit = {},
     onCancelClick: (() -> Unit)? = null,
     onValueChange: (String) -> Unit,
     onBackNavigation: (() -> Unit)? = null
