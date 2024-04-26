@@ -56,7 +56,7 @@ fun SearchProductItemComponent(term: String) {
 
 @Preview
 @Composable
-fun SearchProductItemComponentPreview() {
+private fun SearchProductItemComponentPreview() {
     MlChallengeTheme {
         SearchProductItemComponent(
             term = "Lorem Impsum dolor sit"
