@@ -28,6 +28,10 @@ object ColorApp {
     val surface = Color(0xFFFFFFFF)  // Superfície de cartões no modo diurno
     val surfaceDark = Color(0xFF1E1E1E)  // Superfície de cartões no modo noturno
 
+    // Icones
+    val icon = Color(0xFFB6B5B5)  // Cor padrão para ícones
+    val iconDark = Color(0xFFFFFFFF)  // Cor padrão para ícones no modo noturno
+
     // Outros
     val outline = Color(0xFFBDBDBD)  // Bordas e contornos no modo diurno
     val outlineDark = Color(0xFF757575)  // Bordas e contornos no modo noturno

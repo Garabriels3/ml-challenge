@@ -34,6 +34,7 @@ fun SearchProductItemComponent(term: String) {
         Icon(
             modifier = Modifier.size(Sizing.scale20),
             painter = painterResource(id = R.drawable.ic_clock),
+            tint = ColorApp.icon,
             contentDescription = null
         )
         Spacer(modifier = Modifier.width(Sizing.scale16))
@@ -49,6 +50,7 @@ fun SearchProductItemComponent(term: String) {
         Icon(
             modifier = Modifier.size(Sizing.scale16),
             painter = painterResource(id = R.drawable.ic_fetch),
+            tint = ColorApp.icon,
             contentDescription = null
         )
     }
