@@ -114,8 +114,8 @@ private fun GridProductsComponent(
         ObservePagingState(pagingProducts)
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(Spacing.scale16),
+            horizontalArrangement = Arrangement.spacedBy(Spacing.scale16),
         ) {
             items(pagingProducts.itemCount) { index ->
                 pagingProducts[index]?.let { ProductGridItemComponent(productUi = it) }
