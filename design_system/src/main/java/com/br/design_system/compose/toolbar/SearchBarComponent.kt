@@ -5,11 +5,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,14 +31,13 @@ import com.br.design_system.theme.Spacing
 
 @Composable
 fun SearchBarComponent(
-    modifier: Modifier,
     value: String,
-    label: String,
     placeholder: String?,
     searchButtonState: ImeAction,
     onClickSearchKeyboard: (String) -> Unit,
-    onValueChange: (String) -> Unit,
     onSearchFieldClick: () -> Unit,
+    onCancelClick: (() -> Unit)? = null,
+    onValueChange: (String) -> Unit,
     onBackNavigation: (() -> Unit)? = null
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -51,47 +53,61 @@ fun SearchBarComponent(
     )
 
     Box(
-        modifier = modifier.background(color = ColorApp.primary)
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = ColorApp.primary)
     ) {
         Row(
             modifier = Modifier
-                .padding(vertical = Spacing.scale12),
+                .padding(Spacing.scale12),
             verticalAlignment = Alignment.CenterVertically
         ) {
             onBackNavigation?.let {
-                Spacer(modifier = Modifier.width(Sizing.scale24))
                 Icon(
                     painter = painterResource(id = androidx.core.R.drawable.ic_call_answer),
                     contentDescription = null
                 )
+                Spacer(modifier = Modifier.width(Sizing.scale16))
             }
-            Spacer(modifier = Modifier.width(Sizing.scale24))
             CustomOutlinedTextField(
+                modifier = Modifier.weight(2f),
                 value = initialValue,
-                label = label,
                 keyboardOptions = keyBoardOptions,
                 keyboardActions = keyboardActions,
                 placeholder = placeholder,
                 onValueChange = onValueChange,
                 onSearchFieldClick = onSearchFieldClick
             )
+            if (onCancelClick != null && value.isNotEmpty()) {
+                TextButton(
+                    modifier = Modifier.weight(0.7f),
+                    onClick = { onCancelClick() }
+                ) {
+                    Text(
+                        text = "Cancelar",
+                        color = ColorApp.textOnPrimary
+                    )
+                }
+            }
         }
     }
 }
 
 @Composable
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO or Configuration.UI_MODE_TYPE_NORMAL)
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_NO or Configuration.UI_MODE_TYPE_NORMAL,
+    showSystemUi = true, showBackground = true
+)
 private fun SearchBarComponentPreview() {
     MlChallengeTheme {
         SearchBarComponent(
-            modifier = Modifier,
             value = "",
             onValueChange = {},
-            label = "Teste",
             placeholder = "Pesquisar",
             searchButtonState = ImeAction.Search,
-            onClickSearchKeyboard = { },
+            onCancelClick = { },
             onBackNavigation = { },
+            onClickSearchKeyboard = { },
             onSearchFieldClick = { }
         )
     }

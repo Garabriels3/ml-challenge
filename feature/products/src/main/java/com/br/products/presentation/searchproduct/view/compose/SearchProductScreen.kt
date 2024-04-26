@@ -15,6 +15,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.br.design_system.compose.snackbar.SnackBarNotifier
@@ -107,15 +108,16 @@ private fun SearchProductContent(
         },
         topBar = {
             SearchBarComponent(
-                modifier = Modifier.fillMaxWidth(),
                 value = uiModel.productName,
-                label = "Buscar",
                 placeholder = "Buscar",
                 onValueChange = {
                     triggerAction(SearchProductUiAction.OnTextChangedAction(it))
                 },
                 searchButtonState = uiModel.isSearchButtonEnabled,
                 onSearchFieldClick = {},
+                onCancelClick = {
+                    triggerAction(SearchProductUiAction.OnCancelSearchAction)
+                },
                 onClickSearchKeyboard = {
                     triggerAction(
                         SearchProductUiAction.OnClickSearchAction(
@@ -144,7 +146,13 @@ private fun SearchProductContent(
 private fun SearchProductScreenPreview() {
     MlChallengeTheme {
         SearchProductScreen(
-            SearchProductUiState.OnLoadingState,
+            SearchProductUiState.OnResumeState(
+                SearchProductUiModel(
+                    productName = "Product",
+                    isSearchButtonEnabled = ImeAction.Search,
+                    productsHistory = listOf("Product 1", "Product 2")
+                )
+            ),
         ) {}
     }
 }

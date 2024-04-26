@@ -44,6 +44,15 @@ class SearchProductViewModel(
                 setSearchButtonState(action.productName)
                 updateProductName(action.productName)
             }
+
+            is SearchProductUiAction.OnCancelSearchAction -> {
+                _uiState.value = SearchProductUiState.OnResumeState(
+                    getCurrentUiModel().copy(
+                        productName = "",
+                        isSearchButtonEnabled = ImeAction.None
+                    )
+                )
+            }
         }
     }
 
