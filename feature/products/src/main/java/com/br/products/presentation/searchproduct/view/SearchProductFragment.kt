@@ -35,7 +35,10 @@ class SearchProductFragment : Fragment(), ProductsNavigation {
             )
             setContent {
                 MlChallengeTheme {
-                    SearchProductScreen(viewModel.uiState.collectAsState().value) { action ->
+                    SearchProductScreen(
+                        state = viewModel.uiState.collectAsState().value,
+                        effect = viewModel.uiSideEffect,
+                    ) { action ->
                         viewModel.handleAction(action)
                     }
                 }

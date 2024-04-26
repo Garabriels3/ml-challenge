@@ -24,6 +24,7 @@ class SearchProductViewModel(
     val uiState get() = _uiState.asStateFlow()
 
     private val _uiSideEffect = MutableSingleLiveEvent<SearchProductUiSideEffect>()
+    val uiSideEffect get() = _uiSideEffect.asSingleEvent()
 
     init {
         getSearchTerms()
@@ -31,22 +32,30 @@ class SearchProductViewModel(
 
     fun handleAction(action: SearchProductUiAction) {
         when (action) {
-            is SearchProductUiAction.OnClickProductAction -> {
-                // TODO: Log event to click on product
-                saveSearchTerm(action.productName)
-                setNavigateToProductsSideEffect(action.productName)
-            }
-
             is SearchProductUiAction.OnClickSearchAction -> {
                 // TODO: Log event to click on search
-                saveSearchTerm(action.productName)
-                setNavigateToProductsSideEffect(action.productName)
+                checkInternetConnection(action.networkAvailable) {
+                    saveSearchTerm(action.productName)
+                    setNavigateToProductsSideEffect(action.productName)
+                }
             }
 
             is SearchProductUiAction.OnTextChangedAction -> {
                 setSearchButtonState(action.productName)
                 updateProductName(action.productName)
             }
+        }
+    }
+
+    private fun checkInternetConnection(isAvailable: Boolean, doOnConnection: () -> Unit) {
+        if (isAvailable) {
+            doOnConnection()
+        } else {
+            _uiSideEffect.emit(
+                SearchProductUiSideEffect.OnShowToastEffect(
+                    "Sem Internê"
+                )
+            )
         }
     }
 

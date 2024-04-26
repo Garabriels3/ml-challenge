@@ -6,7 +6,7 @@ data class SearchProductUiModel(
     val productName: String = "",
     val productsHistory: List<String> = emptyList(),
     val errorMessage: String = "",
-    val isSearchButtonEnabled: ImeAction = ImeAction.None
+    val isSearchButtonEnabled: ImeAction = ImeAction.None,
 )
 
 sealed class SearchProductUiState(open val uiModel: SearchProductUiModel) {
