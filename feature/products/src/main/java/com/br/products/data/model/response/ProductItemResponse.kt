@@ -1,8 +1,7 @@
 package com.br.products.data.model.response
 
+import com.br.infra.utils.formatPrice
 import com.squareup.moshi.Json
-import java.text.NumberFormat
-import java.util.Locale
 
 data class ProductItemResponse(
     @Json(name = "id")
@@ -31,11 +30,6 @@ data class ProductItemResponse(
             Condition.USED.name.lowercase() -> "Usado"
             else -> "Não informado"
         }
-    }
-
-    private fun formatPrice(price: Double): String {
-        val format = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
-        return format.format(price)
     }
 
     private enum class Condition {
