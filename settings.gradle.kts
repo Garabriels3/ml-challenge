@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ML Challenge"
+rootProject.name = "ML mini app"
 include(":app")
 include(":design_system")
 include(":network")
