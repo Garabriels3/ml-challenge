@@ -1,9 +1,10 @@
 package com.br.products.presentation.products.view.compose
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -13,6 +14,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
@@ -28,7 +30,6 @@ import com.br.products.presentation.products.udf.ProductsUiAction
 import com.br.products.presentation.products.udf.ProductsUiModel
 import com.br.products.presentation.products.udf.ProductsUiState
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ProductsScreen(
     state: ProductsUiState,
@@ -47,11 +48,18 @@ fun ProductsScreen(
             )
         },
         containerColor = ColorApp.backgroundYellow
-    ) { _ ->
+    ) { paddingValues ->
+        val noBottomPadding = PaddingValues(
+            start = paddingValues.calculateStartPadding(LocalLayoutDirection.current),
+            top = paddingValues.calculateTopPadding(),
+            end = paddingValues.calculateEndPadding(LocalLayoutDirection.current),
+            bottom = 0.dp
+        )
         val products = state.uiModel.products.collectAsLazyPagingItems()
         when (state) {
             is ProductsUiState.OnResumedGridState -> {
                 GridProductsComponent(
+                    paddingValues = noBottomPadding,
                     pagingProducts = products,
                     triggerAction = triggerAction
                 )
@@ -59,6 +67,7 @@ fun ProductsScreen(
 
             is ProductsUiState.OnResumedListState -> {
                 ListProductsComponent(
+                    paddingValues = noBottomPadding,
                     pagingProducts = products,
                     triggerAction = triggerAction
                 )
@@ -104,12 +113,14 @@ private fun Loading() {
 @Composable
 private fun GridProductsComponent(
     triggerAction: (ProductsUiAction) -> Unit,
-    pagingProducts: LazyPagingItems<ProductUi>
+    pagingProducts: LazyPagingItems<ProductUi>,
+    paddingValues: PaddingValues
 ) {
     Column(
         modifier = Modifier
-            .padding(horizontal = Spacing.scale16)
             .fillMaxSize()
+            .padding(paddingValues)
+            .padding(horizontal = Spacing.scale16)
     ) {
         ObservePagingState(pagingProducts)
         LazyVerticalGrid(
@@ -127,7 +138,8 @@ private fun GridProductsComponent(
 @Composable
 private fun ListProductsComponent(
     triggerAction: (ProductsUiAction) -> Unit,
-    pagingProducts: LazyPagingItems<ProductUi>
+    pagingProducts: LazyPagingItems<ProductUi>,
+    paddingValues: PaddingValues
 ) {
     Column {
         LazyColumn {

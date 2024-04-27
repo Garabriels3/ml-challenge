@@ -9,6 +9,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import com.br.design_system.theme.MlChallengeTheme
+import com.br.products.presentation.products.udf.ProductsUiAction
 import com.br.products.presentation.products.view.compose.ProductsScreen
 import com.br.products.presentation.products.viewmodel.ProductsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -19,7 +20,15 @@ class ProductsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            viewModel.handleAction(
+                ProductsUiAction.OnStartScreen(
+                    arguments?.getString("searchedTerm") ?: ""
+                )
+            )
+        }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

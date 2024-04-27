@@ -10,6 +10,7 @@ import com.br.infra.coroutines.MutableSingleLiveEvent
 import com.br.products.domain.model.ProductItemDomain
 import com.br.products.domain.usecase.products.GetProductsUseCase
 import com.br.products.presentation.products.udf.ProductUi
+import com.br.products.presentation.products.udf.ProductsUiAction
 import com.br.products.presentation.products.udf.ProductsUiSideEffect
 import com.br.products.presentation.products.udf.ProductsUiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -30,13 +31,17 @@ class ProductsViewModel(
     private val _uiSideEffect = MutableSingleLiveEvent<ProductsUiSideEffect>()
     val uiSideEffect get() = _uiSideEffect.asSingleEvent()
 
-    init {
-        getProducts()
+    fun handleAction(action: ProductsUiAction) {
+        when (action) {
+            is ProductsUiAction.OnStartScreen -> {
+                getProducts(action.searchedTerm)
+            }
+        }
     }
 
-    private fun getProducts() {
+    private fun getProducts(searchedTerm: String) {
         viewModelScope.launch {
-            getProductsUseCase("Placa de Video")
+            getProductsUseCase(searchedTerm)
                 .cachedIn(this)
                 .onStart { _uiState.value = ProductsUiState.OnLoadingState }
                 .map { pages ->
