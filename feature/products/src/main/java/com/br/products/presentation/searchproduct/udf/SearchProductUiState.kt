@@ -13,7 +13,4 @@ sealed class SearchProductUiState(open val uiModel: SearchProductUiModel) {
     object OnLoadingState : SearchProductUiState(SearchProductUiModel())
     data class OnResumeState(override val uiModel: SearchProductUiModel) :
         SearchProductUiState(uiModel)
-    object OnEmptyState : SearchProductUiState(SearchProductUiModel())
-    data class OnErrorState(override val uiModel: SearchProductUiModel) :
-        SearchProductUiState(uiModel)
 }

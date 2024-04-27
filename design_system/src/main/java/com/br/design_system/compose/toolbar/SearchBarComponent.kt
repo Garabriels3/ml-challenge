@@ -24,6 +24,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
+import com.br.design_system.R
 import com.br.design_system.compose.outlinedtextfield.CustomOutlinedTextField
 import com.br.design_system.theme.ColorApp
 import com.br.design_system.theme.MlChallengeTheme
@@ -65,7 +66,7 @@ fun SearchBarComponent(
         ) {
             onBackNavigation?.let {
                 Icon(
-                    painter = painterResource(id = androidx.core.R.drawable.ic_call_answer),
+                    painter = painterResource(id = R.drawable.ic_arrow_left),
                     contentDescription = null,
                     modifier = Modifier
                         .clickable { onBackNavigation() }
