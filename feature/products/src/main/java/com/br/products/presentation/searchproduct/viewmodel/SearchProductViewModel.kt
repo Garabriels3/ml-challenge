@@ -61,9 +61,7 @@ class SearchProductViewModel(
             doOnConnection()
         } else {
             _uiSideEffect.emit(
-                SearchProductUiSideEffect.OnShowToastEffect(
-                    "Sem Internê"
-                )
+                SearchProductUiSideEffect.OnShowToastEffect
             )
         }
     }

@@ -2,11 +2,10 @@ package com.br.products.presentation.products.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.map
 import com.br.infra.coroutines.MutableSingleLiveEvent
+import com.br.products.R
 import com.br.products.domain.model.ProductItemDomain
 import com.br.products.domain.usecase.products.GetProductsUseCase
 import com.br.products.presentation.products.udf.ProductUi
@@ -68,7 +67,7 @@ class ProductsViewModel(
     )
 
     private fun setFreeShippingText(freeShipping: Boolean) =
-        if (freeShipping) "Frete grátis" else null
+        if (freeShipping) R.string.products_free_shipping_label else null
 
     private fun getCurrentUiModel() = checkNotNull(_uiState.value).uiModel
 }

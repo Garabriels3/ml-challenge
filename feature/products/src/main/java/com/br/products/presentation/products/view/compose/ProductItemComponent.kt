@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -19,10 +20,12 @@ import com.br.design_system.theme.ColorApp
 import com.br.design_system.theme.FontSize
 import com.br.design_system.theme.MlChallengeTheme
 import com.br.design_system.theme.Spacing
+import com.br.products.R
 import com.br.products.presentation.products.udf.ProductUi
 
 @Composable
 fun ProductListItemComponent(productUi: ProductUi) {
+    val freeShippingMessage = productUi.freeShipping?.let { stringResource(id = it) }
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -37,9 +40,9 @@ fun ProductListItemComponent(productUi: ProductUi) {
             imageUrl = productUi.imageUrl,
         )
         Column(modifier = Modifier.weight(1f)) {
-            if (!productUi.freeShipping.isNullOrEmpty()) {
+            if (!freeShippingMessage.isNullOrEmpty()) {
                 Text(
-                    text = productUi.freeShipping,
+                    text = freeShippingMessage,
                     textAlign = TextAlign.Start,
                     fontSize = FontSize.scale3Xs,
                     color = ColorApp.textGreen,
@@ -91,7 +94,7 @@ private fun ProductItemComponentPreview() {
                 price = 1000.00,
                 imageUrl = "http://http2.mlstatic.com/D_733881-MLA44173736562_112020-I.jpg",
                 availableQuantity = 10,
-                freeShipping = "Frete grátis",
+                freeShipping = R.string.products_free_shipping_label,
                 condition = "Novo"
             )
         )

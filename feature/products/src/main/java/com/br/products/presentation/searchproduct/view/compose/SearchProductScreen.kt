@@ -15,6 +15,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.ContentProviderCompat.requireContext
@@ -43,7 +44,6 @@ fun SearchProductScreen(
     triggerAction: (SearchProductUiAction) -> Unit,
 ) {
     val snackBarHostState = remember { SnackbarHostState() }
-
     ObserveUiEffects(effect, snackBarHostState, navController)
     when (state) {
         is SearchProductUiState.OnResumeState -> {
@@ -74,6 +74,7 @@ private fun ObserveUiEffects(
 ) {
     val coroutineScope = rememberCoroutineScope()
     val lifecycleOwner = LocalLifecycleOwner.current
+    val networkOutMessage = stringResource(id = R.string.products_network_out_message)
 
     effect.CollectEffect(lifecycleOwner) {
         when (it) {
@@ -87,7 +88,7 @@ private fun ObserveUiEffects(
             is SearchProductUiSideEffect.OnShowToastEffect -> {
                 coroutineScope.launch {
                     snackBarHostState.showSnackbar(
-                        message = it.message,
+                        message = networkOutMessage,
                     )
                 }
             }
@@ -116,7 +117,7 @@ private fun SearchProductContent(
         topBar = {
             SearchBarComponent(
                 value = uiModel.productName,
-                placeholder = "Buscar",
+                placeholder = stringResource(id = R.string.products_search_bar_placeholder),
                 onValueChange = {
                     triggerAction(SearchProductUiAction.OnTextChangedAction(it))
                 },

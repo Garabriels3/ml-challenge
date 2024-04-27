@@ -17,7 +17,7 @@ data class ProductUi(
     val imageUrl: String,
     val condition: String,
     val availableQuantity: Int,
-    val freeShipping: String?
+    val freeShipping: Int?
 )
 
 sealed class ProductsUiState(open val uiModel: ProductsUiModel) {
