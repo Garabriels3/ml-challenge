@@ -14,7 +14,7 @@ data class ProductsUiModel(
 data class ProductUi(
     val id: String,
     val name: String,
-    val price: Double,
+    val price: String,
     val imageUrl: String,
     val condition: String,
     val availableQuantity: Int,

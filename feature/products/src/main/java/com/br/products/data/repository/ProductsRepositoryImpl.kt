@@ -42,9 +42,9 @@ class ProductsRepositoryImpl(
         return ProductItemDomain(
             id = id,
             title = title,
-            price = price,
+            price = priceFormatted(),
             thumbnail = thumbnail,
-            condition = condition,
+            condition = conditionFormatted(),
             availableQuantity = availableQuantity,
             freeShipping = shipping.freeShipping,
             total = total

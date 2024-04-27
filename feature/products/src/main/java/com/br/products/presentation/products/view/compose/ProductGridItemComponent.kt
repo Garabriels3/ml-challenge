@@ -65,7 +65,7 @@ fun ProductGridItemComponent(productUi: ProductUi, onItemClick: (ProductsUiActio
                 fontWeight = FontWeight.Bold
             )
             Text(
-                text = formatCurrency(productUi.price),
+                text = productUi.price,
                 textAlign = TextAlign.Start,
                 fontSize = FontSize.scaleXs,
                 color = ColorApp.textOnSurface
@@ -85,10 +85,6 @@ fun ProductGridItemComponent(productUi: ProductUi, onItemClick: (ProductsUiActio
     }
 }
 
-private fun formatCurrency(value: Double): String {
-    return "R$ $value"
-}
-
 @Composable
 @Preview(showSystemUi = false, showBackground = true)
 private fun ProductGridItemComponentPreview() {
@@ -97,7 +93,7 @@ private fun ProductGridItemComponentPreview() {
             ProductUi(
                 id = "1",
                 name = "Placa de Video Nvidia RTX 3080 10GB GDDR6X GDDR6X",
-                price = 100.0,
+                price = "R$ 100,0",
                 imageUrl = "http://http2.mlstatic.com/D_733881-MLA44173736562_112020-I.jpg",
                 condition = "Novo",
                 availableQuantity = 10,
