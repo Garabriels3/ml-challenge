@@ -2,6 +2,7 @@ package com.br.design_system.compose.toolbar
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -33,11 +34,11 @@ import com.br.design_system.theme.Spacing
 fun SearchBarComponent(
     value: String,
     placeholder: String?,
+    readOnly: Boolean = false,
     searchButtonState: ImeAction = ImeAction.None,
     onClickSearchKeyboard: ((String) -> Unit) = {},
-    onSearchFieldClick: () -> Unit = {},
     onCancelClick: (() -> Unit)? = null,
-    onValueChange: (String) -> Unit,
+    onValueChange: (String) -> Unit = {},
     onBackNavigation: (() -> Unit)? = null
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -65,18 +66,20 @@ fun SearchBarComponent(
             onBackNavigation?.let {
                 Icon(
                     painter = painterResource(id = androidx.core.R.drawable.ic_call_answer),
-                    contentDescription = null
+                    contentDescription = null,
+                    modifier = Modifier
+                        .clickable { onBackNavigation() }
                 )
                 Spacer(modifier = Modifier.width(Sizing.scale16))
             }
             CustomOutlinedTextField(
                 modifier = Modifier.weight(2f),
                 value = initialValue,
+                readOnly = readOnly,
                 keyboardOptions = keyBoardOptions,
                 keyboardActions = keyboardActions,
                 placeholder = placeholder,
                 onValueChange = onValueChange,
-                onSearchFieldClick = onSearchFieldClick
             )
             if (onCancelClick != null && value.isNotEmpty()) {
                 TextButton(
@@ -108,7 +111,6 @@ private fun SearchBarComponentPreview() {
             onCancelClick = { },
             onBackNavigation = { },
             onClickSearchKeyboard = { },
-            onSearchFieldClick = { }
         )
     }
 }

@@ -5,11 +5,19 @@ import androidx.datastore.core.IOException
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.br.network.exception.GenericException
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 
-class SearchProductsDataStoreImpl(private val dataStore: DataStore<Preferences>) :
+class SearchProductsDataStoreImpl(
+    private val dataStore: DataStore<Preferences>,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+) :
     SearchProductsDataStore {
 
     override val searchTerms: Flow<List<String>> = dataStore.data
@@ -20,13 +28,15 @@ class SearchProductsDataStoreImpl(private val dataStore: DataStore<Preferences>)
             if (exception is IOException) {
                 emit(emptyList())
             } else {
-                throw exception
+                throw GenericException()
             }
-        }
+        }.flowOn(dispatcher)
 
     override suspend fun addSearchTerm(terms: List<String>) {
-        dataStore.edit { preferences ->
-            preferences[SEARCH_HISTORY_KEY] = terms.joinToString(",")
+        withContext(dispatcher) {
+            dataStore.edit { preferences ->
+                preferences[SEARCH_HISTORY_KEY] = terms.joinToString(",")
+            }
         }
     }
 

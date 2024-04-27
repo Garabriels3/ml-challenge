@@ -8,4 +8,5 @@ data class ProductItemDomain(
     val condition: String,
     val availableQuantity: Int,
     val freeShipping: Boolean,
+    val total: Int = 0
 )

@@ -17,7 +17,7 @@ data class ProductItemResponse(
     val availableQuantity: Int,
     @Json(name = "shipping")
     val shipping: ShippingResponse,
-    val total: Int? = 0
+    val total: Int = 0
 )
 
 data class ShippingResponse(

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.navigation.fragment.findNavController
 import com.br.design_system.theme.MlChallengeTheme
 import com.br.products.presentation.products.udf.ProductsUiAction
 import com.br.products.presentation.products.view.compose.ProductsScreen
@@ -17,12 +18,13 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ProductsFragment : Fragment() {
 
     private val viewModel: ProductsViewModel by viewModel()
+    private val navController by lazy { findNavController() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
             viewModel.handleAction(
-                ProductsUiAction.OnStartScreen(
+                ProductsUiAction.OnStartScreenAction(
                     arguments?.getString("searchedTerm") ?: ""
                 )
             )
@@ -42,7 +44,11 @@ class ProductsFragment : Fragment() {
                 MlChallengeTheme {
                     ProductsScreen(
                         state = viewModel.uiState.collectAsState().value,
-                        triggerAction = { }
+                        effect = viewModel.uiSideEffect,
+                        navController = navController,
+                        triggerAction = {
+                            viewModel.handleAction(it)
+                        }
                     )
                 }
             }

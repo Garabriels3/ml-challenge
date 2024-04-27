@@ -1,6 +1,7 @@
 package com.br.products.presentation.searchproduct.view.compose
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,9 +24,10 @@ import com.br.design_system.theme.Sizing
 import com.br.design_system.theme.Spacing
 
 @Composable
-fun SearchProductItemComponent(term: String) {
+fun SearchProductItemComponent(term: String, onItemClick: () -> Unit = {}) {
     Row(
         modifier = Modifier
+            .clickable { onItemClick() }
             .fillMaxWidth()
             .background(color = ColorApp.background)
             .padding(Spacing.scale16),

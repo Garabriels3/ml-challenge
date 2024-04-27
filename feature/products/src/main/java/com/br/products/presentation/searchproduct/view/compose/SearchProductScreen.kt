@@ -18,9 +18,7 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.NavController
-import androidx.navigation.NavDeepLinkBuilder
 import com.br.design_system.compose.snackbar.SnackBarNotifier
 import com.br.design_system.compose.snackbar.SnackbarStatus
 import com.br.design_system.compose.toolbar.SearchBarComponent
@@ -142,7 +140,14 @@ private fun SearchProductContent(
                 .fillMaxSize()
         ) {
             items(uiModel.productsHistory) { product ->
-                SearchProductItemComponent(product)
+                SearchProductItemComponent(product) {
+                    triggerAction(
+                        SearchProductUiAction.OnClickSearchAction(
+                            product,
+                            context.isNetworkAvailable()
+                        )
+                    )
+                }
             }
         }
     }

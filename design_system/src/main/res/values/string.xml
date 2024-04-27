@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="empty_state_title">Não foram encontrado resultados para essa pesquisa</string>
+    <string name="error_state_title">Ops! Houve um erro nosso por aqui, pedimos desculpas</string>
+    <string name="no_connection_state_title">Verifique sua conexão com a internet</string>
+    <string name="try_again_button">Tentar novamente</string>
+</resources>

@@ -1,34 +1,42 @@
 package com.br.products.presentation.products.view.compose
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.br.design_system.compose.noBottomPadding
+import com.br.design_system.compose.states_screen.LoadingScreen
+import com.br.design_system.compose.states_screen.State
+import com.br.design_system.compose.states_screen.StateScreen
 import com.br.design_system.compose.toolbar.SearchBarComponent
 import com.br.design_system.theme.ColorApp
 import com.br.design_system.theme.MlChallengeTheme
+import com.br.infra.coroutines.SingleLiveEvent
+import com.br.infra.coroutines.ext.CollectEffect
 import com.br.products.R
 import com.br.products.presentation.products.udf.ProductsUiAction
 import com.br.products.presentation.products.udf.ProductsUiModel
+import com.br.products.presentation.products.udf.ProductsUiSideEffect
 import com.br.products.presentation.products.udf.ProductsUiState
 
 @Composable
 fun ProductsScreen(
     state: ProductsUiState,
+    effect: SingleLiveEvent<ProductsUiSideEffect> = SingleLiveEvent(),
+    navController: NavController? = null,
     triggerAction: (ProductsUiAction) -> Unit,
 ) {
     Scaffold(
         topBar = {
             SearchBarComponent(
                 value = state.uiModel.searchedTerm,
+                readOnly = true,
                 placeholder = stringResource(id = R.string.products_search_bar_placeholder),
-                onValueChange = {
-                },
-                onSearchFieldClick = {
-                    // TODO: Navigate to search screen
+                onBackNavigation = {
+                    triggerAction(ProductsUiAction.OnClickSearchBarAction)
                 },
             )
         },
@@ -36,6 +44,7 @@ fun ProductsScreen(
     ) { paddingValues ->
         val noBottomPadding = paddingValues.noBottomPadding()
         val products = state.uiModel.products.collectAsLazyPagingItems()
+        ObserveUiEffects(effect, navController = navController)
         when (state) {
             is ProductsUiState.OnResumedGridState -> {
                 GridProductsComponent(
@@ -54,25 +63,42 @@ fun ProductsScreen(
             }
 
             is ProductsUiState.OnLoadingState -> {
+                LoadingScreen()
             }
 
             is ProductsUiState.OnErrorState -> {
+                StateScreen(state = State.Error) {
+                    triggerAction(ProductsUiAction.OnRetryAction)
+                }
             }
 
-            is ProductsUiState.OnEmptyState -> {
+            is ProductsUiState.OnNetworkState -> {
+                StateScreen(state = State.NetworkError)
             }
         }
     }
 }
 
 @Composable
-private fun PaddingValues.noBottomPadding(): PaddingValues {
-    return PaddingValues(
-        start = 0.dp,
-        top = calculateTopPadding(),
-        end = 0.dp,
-        bottom = 0.dp
-    )
+private fun ObserveUiEffects(
+    effect: SingleLiveEvent<ProductsUiSideEffect>,
+    navController: NavController?,
+) {
+    val lifecycleOwner = LocalLifecycleOwner.current
+    effect.CollectEffect(lifecycleOwner) {
+        when (it) {
+            is ProductsUiSideEffect.OnBackToSearchEffect -> {
+                navController?.popBackStack()
+            }
+
+            is ProductsUiSideEffect.OnNavigateToDetailEffect -> {
+//                navController?.navigate(
+//                    R.id.action_productsFragment_to_productDetailFragment,
+//                    Bundle().apply { putString("productId", it.productId) }
+//                )
+            }
+        }
+    }
 }
 
 @Preview

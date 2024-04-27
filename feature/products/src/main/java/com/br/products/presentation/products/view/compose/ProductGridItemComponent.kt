@@ -1,6 +1,7 @@
 package com.br.products.presentation.products.view.compose
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -25,11 +26,15 @@ import com.br.design_system.theme.Spacing
 import com.br.infra.coroutines.ext.toHttpsUri
 import com.br.products.R
 import com.br.products.presentation.products.udf.ProductUi
+import com.br.products.presentation.products.udf.ProductsUiAction
 
 @Composable
-fun ProductGridItemComponent(productUi: ProductUi) {
+fun ProductGridItemComponent(productUi: ProductUi, onItemClick: (ProductsUiAction) -> Unit = {}) {
     Box(
         modifier = Modifier
+            .clickable {
+                onItemClick(ProductsUiAction.OnProductClickAction(productId = productUi.id))
+            }
             .width(IntrinsicSize.Min)
             .background(ColorApp.surface)
     ) {
@@ -94,9 +99,10 @@ private fun ProductGridItemComponentPreview() {
                 name = "Placa de Video Nvidia RTX 3080 10GB GDDR6X GDDR6X",
                 price = 100.0,
                 imageUrl = "http://http2.mlstatic.com/D_733881-MLA44173736562_112020-I.jpg",
+                condition = "Novo",
                 availableQuantity = 10,
                 freeShipping = R.string.products_free_shipping_label,
-                condition = "Novo"
+                total = 0,
             )
         )
     }

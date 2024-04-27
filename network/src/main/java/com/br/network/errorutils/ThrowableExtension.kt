@@ -1,22 +1,21 @@
 package com.br.network.errorutils
 
+import com.br.network.exception.GenericException
 import com.br.network.exception.NetworkException
-import java.io.InterruptedIOException
 import java.net.ConnectException
 import java.net.SocketException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import java.util.concurrent.TimeoutException
 
-internal fun getDefaultThrowable() = NetworkException()
-
 internal fun Throwable.toRequestThrowable(): Throwable {
     return when (this) {
+        is ConnectException -> NetworkException()
         is UnknownHostException,
         is TimeoutException,
         is SocketTimeoutException,
-        is SocketException,
-        is ConnectException -> getDefaultThrowable()
+        is SocketException -> GenericException()
+
         else -> this
     }
 }

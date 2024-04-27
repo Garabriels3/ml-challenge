@@ -1,5 +1,6 @@
 package com.br.products.presentation.products.view.compose
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,12 +23,16 @@ import com.br.design_system.theme.MlChallengeTheme
 import com.br.design_system.theme.Spacing
 import com.br.products.R
 import com.br.products.presentation.products.udf.ProductUi
+import com.br.products.presentation.products.udf.ProductsUiAction
 
 @Composable
-fun ProductListItemComponent(productUi: ProductUi) {
+fun ProductListItemComponent(productUi: ProductUi, onItemClick: (ProductsUiAction) -> Unit = {}) {
     val freeShippingMessage = productUi.freeShipping?.let { stringResource(id = it) }
     Row(
         modifier = Modifier
+            .clickable {
+                onItemClick(ProductsUiAction.OnProductClickAction(productId = productUi.id))
+            }
             .fillMaxWidth()
             .padding(Spacing.scale16),
         horizontalArrangement = Arrangement.Start,
@@ -93,9 +98,10 @@ private fun ProductItemComponentPreview() {
                 name = "Placa de Video Nvidia RTX 3080 10GB GDDR6X GDDR6X",
                 price = 1000.00,
                 imageUrl = "http://http2.mlstatic.com/D_733881-MLA44173736562_112020-I.jpg",
+                condition = "Novo",
                 availableQuantity = 10,
                 freeShipping = R.string.products_free_shipping_label,
-                condition = "Novo"
+                total = 0,
             )
         )
     }

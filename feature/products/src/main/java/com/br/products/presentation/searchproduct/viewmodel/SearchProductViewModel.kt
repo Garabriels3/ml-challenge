@@ -26,6 +26,8 @@ class SearchProductViewModel(
     private val _uiSideEffect = MutableSingleLiveEvent<SearchProductUiSideEffect>()
     val uiSideEffect get() = _uiSideEffect.asSingleEvent()
 
+    private var originalTerms = listOf<String>()
+
     init {
         getSearchTerms()
     }
@@ -41,6 +43,7 @@ class SearchProductViewModel(
             }
 
             is SearchProductUiAction.OnTextChangedAction -> {
+                filterTerms(action.productName)
                 setSearchButtonState(action.productName)
                 updateProductName(action.productName)
             }
@@ -53,6 +56,27 @@ class SearchProductViewModel(
                     )
                 )
             }
+        }
+    }
+
+    private fun filterTerms(productName: String) {
+        if (productName.isEmpty()) {
+            _uiState.value = SearchProductUiState.OnResumeState(
+                getCurrentUiModel().copy(
+                    productsHistory = originalTerms
+                )
+            )
+        } else {
+            _uiState.value = SearchProductUiState.OnResumeState(
+                getCurrentUiModel().copy(
+                    productsHistory = originalTerms.filter {
+                        it.contains(
+                            productName,
+                            ignoreCase = true
+                        )
+                    }
+                )
+            )
         }
     }
 
@@ -89,6 +113,7 @@ class SearchProductViewModel(
                     _uiState.value = SearchProductUiState.OnLoadingState
                 }
                 .collect {
+                    originalTerms = it
                     _uiState.value = SearchProductUiState.OnResumeState(
                         getCurrentUiModel().copy(
                             productsHistory = it

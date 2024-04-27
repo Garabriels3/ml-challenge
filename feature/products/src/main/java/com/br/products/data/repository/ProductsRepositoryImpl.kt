@@ -31,13 +31,11 @@ class ProductsRepositoryImpl(
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { ProductPagingSource(service, query) }
-        ).flow.map { page ->
+         ).flow.map { page ->
             page.map {
                 it.toDomain()
             }
-        }
-            .flowOn(dispatcher)
-            .parseHttpError()
+        }.flowOn(dispatcher).parseHttpError()
     }
 
     private fun ProductItemResponse.toDomain(): ProductItemDomain {
@@ -48,7 +46,8 @@ class ProductsRepositoryImpl(
             thumbnail = thumbnail,
             condition = condition,
             availableQuantity = availableQuantity,
-            freeShipping = shipping.freeShipping
+            freeShipping = shipping.freeShipping,
+            total = total
         )
     }
 }
