@@ -89,6 +89,15 @@ image-coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref 
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastoreCoreAndroid" }
 
+# Flow Turbine
+flow-turbine = { group = "app.cash.turbine", name = "turbine", version = "0.6.0" }
+
+# Mockk
+mockk = { group = "io.mockk", name = "mockk", version = "1.12.0" }
+
+# MockWebServer
+mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver", version = "4.9.1" }
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
