@@ -12,7 +12,7 @@ constraintlayout = "2.1.4"
 navigation = '2.5.3'
 
 retrofit = '2.9.0'
-okhttp = '5.0.0-alpha.11'
+okhttp = '4.12.0'
 
 moshi = "1.14.0"
 moshi_converter = "2.9.0"
@@ -40,6 +40,7 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "j
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.8.0" }
+kotlinx-coroutines-core-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version = "1.8.0" }
 material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
@@ -83,6 +84,9 @@ koin-android-compat = { group = "io.insert-koin", name = "koin-android-compat", 
 koin-androidx-navigation = { group = "io.insert-koin", name = "koin-androidx-navigation", version.ref = "koin" }
 koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koin-test" }
 koin-test-junit4 = { group = "io.insert-koin", name = "koin-test-junit4", version.ref = "koin-test" }
+
+# Json Reader
+thiago-souto-json-reader = { group = "dev.thiagosouto", name = "file-butler", version = "0.3.0" }
 
 # Coil Compose
 image-coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil-compose" }

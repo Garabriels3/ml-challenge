@@ -63,6 +63,9 @@ dependencies {
     // Coil
     implementation(libs.image.coil.compose)
 
+    // Json Reader
+    implementation(libs.thiago.souto.json.reader)
+
     // Koin
     implementation(libs.koin.android)
     implementation(libs.koin.core)
@@ -76,6 +79,7 @@ dependencies {
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.adapter.corutines)
+    implementation(libs.okhttp.logging.interceptor)
 
     // Moshi
     implementation(libs.retrofit.moshi)
@@ -84,10 +88,13 @@ dependencies {
     // Datastore
     implementation(libs.androidx.datastore.preferences)
 
+    testImplementation(libs.okhttp)
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
     testImplementation(libs.mockwebserver)
     testImplementation(libs.flow.turbine)
+    testImplementation(libs.kotlinx.coroutines.core.test)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
