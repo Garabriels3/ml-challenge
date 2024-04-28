@@ -5,7 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.br.network.errorutils.parseHttpError
-import com.br.products.data.datasource.remote.ProductPagingSource
+import com.br.products.data.datasource.paging.ProductPagingSource
 import com.br.products.data.model.response.ProductItemResponse
 import com.br.products.data.service.ProductsService
 import com.br.products.domain.model.ProductItemDomain

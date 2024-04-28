@@ -7,11 +7,17 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.br.network.config.HttpClient.makeService
 import com.br.products.data.datasource.local.terms.SearchProductsDataStore
 import com.br.products.data.datasource.local.terms.SearchProductsDataStoreImpl
+import com.br.products.data.datasource.remote.product_detail.ProductDetailRemoteDataSource
+import com.br.products.data.datasource.remote.product_detail.ProductDetailRemoteDataSourceImpl
+import com.br.products.data.repository.ProductDetailRepositoryImpl
 import com.br.products.data.repository.ProductsRepositoryImpl
 import com.br.products.data.repository.SearchProductsRepositoryImpl
 import com.br.products.data.service.ProductsService
+import com.br.products.domain.repository.ProductDetailRepository
 import com.br.products.domain.repository.ProductsRepository
 import com.br.products.domain.repository.SearchProductsRepository
+import com.br.products.domain.usecase.product_detail.ProductDetailUseCase
+import com.br.products.domain.usecase.product_detail.ProductDetailUseCaseImpl
 import com.br.products.domain.usecase.products.GetProductsUseCase
 import com.br.products.domain.usecase.products.GetProductsUseCaseImpl
 import com.br.products.domain.usecase.terms.GetTermsHistoryUseCase
@@ -35,12 +41,15 @@ class ProductsDI {
         factory<SearchProductsDataStore> { SearchProductsDataStoreImpl(get()) }
         factory<SearchProductsRepository> { SearchProductsRepositoryImpl(get()) }
         factory<ProductsRepository> { ProductsRepositoryImpl(get()) }
+        factory<ProductDetailRemoteDataSource> { ProductDetailRemoteDataSourceImpl(get()) }
+        factory<ProductDetailRepository> { ProductDetailRepositoryImpl(get()) }
     }
 
     private val domain: Module = module {
         factory<GetProductsUseCase> { GetProductsUseCaseImpl(get()) }
         factory<GetTermsHistoryUseCase> { GetTermsHistoryUseCaseImpl(get()) }
         factory<SaveTermsHistoryUseCase> { SaveTermsHistoryUseCaseImpl(get()) }
+        factory<ProductDetailUseCase> { ProductDetailUseCaseImpl(get()) }
     }
 
     private val presentation: Module = module {
