@@ -22,8 +22,6 @@ import androidx.navigation.NavController
 import com.br.design_system.compose.snackbar.SnackBarNotifier
 import com.br.design_system.compose.snackbar.SnackbarStatus
 import com.br.design_system.compose.states_screen.LoadingScreen
-import com.br.design_system.compose.states_screen.State
-import com.br.design_system.compose.states_screen.StateScreen
 import com.br.design_system.compose.toolbar.SearchBarComponent
 import com.br.design_system.theme.MlChallengeTheme
 import com.br.design_system.theme.Spacing
