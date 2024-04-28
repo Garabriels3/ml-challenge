@@ -90,6 +90,7 @@ dependencies {
 
     testImplementation(libs.okhttp)
     testImplementation("androidx.arch.core:core-testing:2.2.0")
+    testImplementation(libs.androidx.paging.testing)
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
     testImplementation(libs.mockwebserver)

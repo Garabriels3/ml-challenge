@@ -1,6 +1,5 @@
 package com.br.products.presentation.products.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
@@ -19,7 +18,6 @@ import com.br.products.presentation.products.udf.ProductsUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
@@ -62,7 +60,6 @@ class ProductsViewModel(
     private fun getProducts(searchedTerm: String) {
         viewModelScope.launch {
             getProductsUseCase(searchedTerm)
-                .cachedIn(viewModelScope)
                 .onStart {
                     _uiState.value = ProductsUiState.OnLoadingState(
                         getCurrentUiModel().copy(
@@ -78,7 +75,8 @@ class ProductsViewModel(
                         it.toProductUi()
                     }
                 }
-                .collectLatest {
+                .cachedIn(viewModelScope)
+                .collect {
                     _uiState.value = ProductsUiState.OnResumedGridState(
                         getCurrentUiModel().copy(
                             products = flowOf(it),
@@ -86,6 +84,7 @@ class ProductsViewModel(
                         )
                     )
                 }
+
         }
     }
 
@@ -114,7 +113,7 @@ class ProductsViewModel(
     private fun ProductItemDomain.toProductUi() = ProductUi(
         id = id,
         name = title,
-        price = price,
+        price = priceFormatted(),
         imageUrl = thumbnail,
         condition = condition,
         availableQuantity = availableQuantity,

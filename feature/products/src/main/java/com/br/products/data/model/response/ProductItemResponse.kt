@@ -1,6 +1,5 @@
 package com.br.products.data.model.response
 
-import com.br.infra.utils.formatPrice
 import com.squareup.moshi.Json
 
 data class ProductItemResponse(
@@ -20,10 +19,6 @@ data class ProductItemResponse(
     val shipping: ShippingResponse,
     val total: Int = 0
 ) {
-    fun priceFormatted(): String {
-        return formatPrice(price)
-    }
-
     fun conditionFormatted(): String {
         return when (condition) {
             Condition.NEW.name.lowercase() -> "Novo"

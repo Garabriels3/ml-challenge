@@ -31,7 +31,7 @@ class ProductsRepositoryImpl(
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { ProductPagingSource(service, query) }
-         ).flow.map { page ->
+        ).flow.map { page ->
             page.map {
                 it.toDomain()
             }
@@ -42,7 +42,7 @@ class ProductsRepositoryImpl(
         return ProductItemDomain(
             id = id,
             title = title,
-            price = priceFormatted(),
+            price = price,
             thumbnail = thumbnail,
             condition = conditionFormatted(),
             availableQuantity = availableQuantity,

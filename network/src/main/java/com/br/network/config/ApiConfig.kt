@@ -10,13 +10,13 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 object HttpClient {
 
-    inline fun <reified T> makeService(): T {
-        return retrofitBuild().create(T::class.java)
+    inline fun <reified T> makeService(baseUrl: String? = null): T {
+        return retrofitBuild(baseUrl).create(T::class.java)
     }
 
-    fun retrofitBuild(): Retrofit {
+    fun retrofitBuild(baseUrl: String?): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://api.mercadolibre.com/")
+            .baseUrl(baseUrl ?: "https://api.mercadolibre.com/")
             .client(okHttpBuild())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(MoshiConverterFactory.create(moshiFactory()).asLenient())

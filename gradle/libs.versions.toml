@@ -31,6 +31,7 @@ paging = "3.2.1"
 jetbrainsKotlinJvm = "1.8.10"
 material = "1.11.0"
 datastoreCoreAndroid = "1.1.0"
+pagingTesting = "3.3.0-beta01"
 
 
 [libraries]
@@ -101,6 +102,7 @@ mockk = { group = "io.mockk", name = "mockk", version = "1.12.0" }
 
 # MockWebServer
 mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver", version = "4.9.1" }
+androidx-paging-testing = { group = "androidx.paging", name = "paging-testing", version.ref = "pagingTesting" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
