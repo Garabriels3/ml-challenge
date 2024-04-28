@@ -40,7 +40,7 @@ fun SearchBarComponent(
     onClickSearchKeyboard: ((String) -> Unit) = {},
     onCancelClick: (() -> Unit)? = null,
     onValueChange: (String) -> Unit = {},
-    onBackNavigation: (() -> Unit)? = null
+    onBackNavigation: (() -> Unit)? = null,
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
     val initialValue by rememberSaveable(value) { mutableStateOf(value) }
