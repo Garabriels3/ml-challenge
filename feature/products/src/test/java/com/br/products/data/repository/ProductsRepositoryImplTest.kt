@@ -46,15 +46,30 @@ class ProductsRepositoryImplTest {
             val expectedMutableList = productsDomainMock()
 
             // When
-            val response = productsRepository.getProductsPagingData("Motorola", 2).asSnapshot {
-                this.flingTo(2)
-            }
+            val response = productsRepository.getProductsPagingData("Motorola", 2).asSnapshot()
 
             // Then
             assertEquals(expectedMutableList, response)
         }
 
-    private fun createRepository(baseUrl: String): ProductsRepository {
+    @Test
+    fun `getProductsPagingData with limit and scroll to index should to return correct size list`(): Unit =
+        runTest {
+            // Given
+            mockWebServer.enqueue(MockResponse().setBody(readFile("json/products/products.json")))
+            productsRepository = createRepository()
+            val expectedMutableList = productsDomainMock()
+
+            // When
+            val response = productsRepository.getProductsPagingData("Motorola", 2).asSnapshot {
+                scrollTo(6)
+            }
+
+            // Then
+            assertEquals(10, response.size)
+        }
+
+    private fun createRepository(baseUrl: String? = null): ProductsRepository {
         val service = makeService<ProductsService>(baseUrl)
         return ProductsRepositoryImpl(service, Dispatchers.Unconfined)
     }
