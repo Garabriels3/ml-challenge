@@ -14,7 +14,7 @@ import androidx.paging.compose.LazyPagingItems
 import com.br.design_system.compose.states_screen.State
 import com.br.design_system.compose.states_screen.StateScreen
 import com.br.design_system.theme.Spacing
-import com.br.products.presentation.products.udf.ProductUi
+import com.br.products.presentation.model.ProductUi
 import com.br.products.presentation.products.udf.ProductsUiAction
 
 @Composable

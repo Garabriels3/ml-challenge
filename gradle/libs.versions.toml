@@ -32,6 +32,9 @@ jetbrainsKotlinJvm = "1.8.10"
 material = "1.11.0"
 datastoreCoreAndroid = "1.1.0"
 pagingTesting = "3.3.0-beta01"
+viewpager = "1.0.0"
+accompanistPager = "0.13.0"
+accompanistPagerIndicators = "0.13.0"
 
 
 [libraries]
@@ -102,7 +105,12 @@ mockk = { group = "io.mockk", name = "mockk", version = "1.12.0" }
 
 # MockWebServer
 mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver", version = "4.9.1" }
+
+# ViewPager
 androidx-paging-testing = { group = "androidx.paging", name = "paging-testing", version.ref = "pagingTesting" }
+androidx-viewpager = { group = "androidx.viewpager", name = "viewpager", version.ref = "viewpager" }
+accompanist-pager = { group = "com.google.accompanist", name = "accompanist-pager", version.ref = "accompanistPager" }
+accompanist-pager-indicators = { group = "com.google.accompanist", name = "accompanist-pager-indicators", version.ref = "accompanistPagerIndicators" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

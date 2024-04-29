@@ -22,7 +22,7 @@ import com.br.design_system.theme.FontSize
 import com.br.design_system.theme.MlChallengeTheme
 import com.br.design_system.theme.Spacing
 import com.br.products.R
-import com.br.products.presentation.products.udf.ProductUi
+import com.br.products.presentation.model.ProductUi
 import com.br.products.presentation.products.udf.ProductsUiAction
 
 @Composable

@@ -21,10 +21,6 @@ class SearchProductFragment : Fragment(), ProductsNavigation {
     private val viewModel: SearchProductViewModel by viewModel()
     private val navController by lazy { findNavController() }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

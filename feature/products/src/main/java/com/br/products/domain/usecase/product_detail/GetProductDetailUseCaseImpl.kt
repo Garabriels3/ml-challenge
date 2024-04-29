@@ -4,10 +4,10 @@ import com.br.products.domain.model.ProductDetailDomain
 import com.br.products.domain.repository.ProductDetailRepository
 import kotlinx.coroutines.flow.Flow
 
-class ProductDetailUseCaseImpl(
+class GetProductDetailUseCaseImpl(
     private val productDetailRepository: ProductDetailRepository
-) : ProductDetailUseCase {
-    override fun getProductDetail(productId: String): Flow<ProductDetailDomain> {
+) : GetProductDetailUseCase {
+    override operator fun invoke(productId: String): Flow<ProductDetailDomain> {
         return productDetailRepository.getProductDetail(productId)
     }
 }

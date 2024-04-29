@@ -10,8 +10,7 @@
         android:label="fragment_search_product">
         <action
             android:id="@+id/action_searchProductFragment_to_productsFragment"
-            app:destination="@id/productsFragment"
-            app:popUpToInclusive="true">
+            app:destination="@id/productsFragment">
             <argument
                 android:name="searchedTerm"
                 app:argType="string" />
@@ -21,6 +20,24 @@
     <fragment
         android:id="@+id/productsFragment"
         android:name="com.br.products.presentation.products.view.ProductsFragment"
-        android:label="ProductsFragment" >
+        android:label="ProductsFragment">
+        <action
+            android:id="@+id/action_productsFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment">
+            <argument
+                android:name="productId"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.br.products.presentation.productdetail.view.ProductDetailFragment"
+        android:label="ProductDetailFragment">
+        <action
+            android:id="@+id/action_productsDetail_to_searchProductFragment"
+            app:destination="@id/searchProductFragment"
+            app:popUpTo="@id/searchProductFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

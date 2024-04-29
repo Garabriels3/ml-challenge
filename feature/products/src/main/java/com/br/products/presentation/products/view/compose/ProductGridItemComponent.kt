@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -25,7 +26,7 @@ import com.br.design_system.theme.Sizing
 import com.br.design_system.theme.Spacing
 import com.br.infra.coroutines.ext.toHttpsUri
 import com.br.products.R
-import com.br.products.presentation.products.udf.ProductUi
+import com.br.products.presentation.model.ProductUi
 import com.br.products.presentation.products.udf.ProductsUiAction
 
 @Composable
@@ -44,6 +45,7 @@ fun ProductGridItemComponent(productUi: ProductUi, onItemClick: (ProductsUiActio
         ) {
             ImageFetchComponent(
                 modifier = Modifier
+                    .aspectRatio(0.9f)
                     .align(Alignment.CenterHorizontally),
                 imageUrl = productUi.imageUrl.toHttpsUri()
             )

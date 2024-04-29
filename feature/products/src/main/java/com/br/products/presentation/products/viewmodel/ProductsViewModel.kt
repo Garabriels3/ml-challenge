@@ -10,7 +10,7 @@ import com.br.network.exception.NetworkException
 import com.br.products.R
 import com.br.products.domain.model.ProductItemDomain
 import com.br.products.domain.usecase.products.GetProductsUseCase
-import com.br.products.presentation.products.udf.ProductUi
+import com.br.products.presentation.model.ProductUi
 import com.br.products.presentation.products.udf.ProductsUiAction
 import com.br.products.presentation.products.udf.ProductsUiModel
 import com.br.products.presentation.products.udf.ProductsUiSideEffect
@@ -106,7 +106,13 @@ class ProductsViewModel(
                 )
             }
 
-            else -> throw this
+            else -> {
+                _uiState.value = ProductsUiState.OnErrorState(
+                    getCurrentUiModel().copy(
+                        error = "Unknown error"
+                    )
+                )
+            }
         }
     }
 

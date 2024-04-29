@@ -33,13 +33,14 @@ import com.br.design_system.theme.Spacing
 
 @Composable
 fun SearchBarComponent(
-    value: String,
+    value: String = "",
     placeholder: String?,
     readOnly: Boolean = false,
     searchButtonState: ImeAction = ImeAction.None,
     onClickSearchKeyboard: ((String) -> Unit) = {},
     onCancelClick: (() -> Unit)? = null,
     onValueChange: (String) -> Unit = {},
+    onClickSearchField: (() -> Unit)? = null,
     onBackNavigation: (() -> Unit)? = null,
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -74,7 +75,9 @@ fun SearchBarComponent(
                 Spacer(modifier = Modifier.width(Sizing.scale16))
             }
             CustomOutlinedTextField(
-                modifier = Modifier.weight(2f),
+                modifier = Modifier
+                    .clickable { onClickSearchField?.invoke() }
+                    .weight(2f),
                 value = initialValue,
                 readOnly = readOnly,
                 keyboardOptions = keyBoardOptions,

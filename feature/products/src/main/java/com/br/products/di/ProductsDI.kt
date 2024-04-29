@@ -16,14 +16,15 @@ import com.br.products.data.service.ProductsService
 import com.br.products.domain.repository.ProductDetailRepository
 import com.br.products.domain.repository.ProductsRepository
 import com.br.products.domain.repository.SearchProductsRepository
-import com.br.products.domain.usecase.product_detail.ProductDetailUseCase
-import com.br.products.domain.usecase.product_detail.ProductDetailUseCaseImpl
+import com.br.products.domain.usecase.product_detail.GetProductDetailUseCase
+import com.br.products.domain.usecase.product_detail.GetProductDetailUseCaseImpl
 import com.br.products.domain.usecase.products.GetProductsUseCase
 import com.br.products.domain.usecase.products.GetProductsUseCaseImpl
 import com.br.products.domain.usecase.terms.GetTermsHistoryUseCase
 import com.br.products.domain.usecase.terms.GetTermsHistoryUseCaseImpl
 import com.br.products.domain.usecase.terms.SaveTermsHistoryUseCase
 import com.br.products.domain.usecase.terms.SaveTermsHistoryUseCaseImpl
+import com.br.products.presentation.productdetail.viewmodel.ProductDetailViewModel
 import com.br.products.presentation.products.viewmodel.ProductsViewModel
 import com.br.products.presentation.searchproduct.viewmodel.SearchProductViewModel
 import org.koin.android.ext.koin.androidContext
@@ -49,12 +50,13 @@ class ProductsDI {
         factory<GetProductsUseCase> { GetProductsUseCaseImpl(get()) }
         factory<GetTermsHistoryUseCase> { GetTermsHistoryUseCaseImpl(get()) }
         factory<SaveTermsHistoryUseCase> { SaveTermsHistoryUseCaseImpl(get()) }
-        factory<ProductDetailUseCase> { ProductDetailUseCaseImpl(get()) }
+        factory<GetProductDetailUseCase> { GetProductDetailUseCaseImpl(get()) }
     }
 
     private val presentation: Module = module {
         viewModel { SearchProductViewModel(get(), get()) }
         viewModel { ProductsViewModel(get()) }
+        viewModel { ProductDetailViewModel(get()) }
     }
 
     fun getModules() = listOf(data, presentation, domain)

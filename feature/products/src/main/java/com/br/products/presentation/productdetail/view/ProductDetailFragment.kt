@@ -1,4 +1,4 @@
-package com.br.products.presentation.products.view
+package com.br.products.presentation.productdetail.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,23 +9,22 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.br.design_system.theme.MlChallengeTheme
-import com.br.products.presentation.products.udf.ProductsUiAction
-import com.br.products.presentation.products.view.compose.ProductsScreen
-import com.br.products.presentation.products.viewmodel.ProductsViewModel
+import com.br.products.presentation.productdetail.udf.ProductDetailUiAction
+import com.br.products.presentation.productdetail.view.compose.ProductDetailScreen
+import com.br.products.presentation.productdetail.viewmodel.ProductDetailViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ProductsFragment : Fragment() {
+class ProductDetailFragment : Fragment() {
 
-    private val viewModel: ProductsViewModel by viewModel()
+    private val viewModel: ProductDetailViewModel by viewModel()
     private val navController by lazy { findNavController() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
             viewModel.handleAction(
-                ProductsUiAction.OnStartScreenAction(
-                    arguments?.getString("searchedTerm") ?: ""
+                ProductDetailUiAction.OnStartScreenAction(
+                    arguments?.getString("productId") ?: ""
                 )
             )
         }
@@ -35,21 +34,18 @@ class ProductsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Inflate the layout for this fragment
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(
                 ViewCompositionStrategy.DisposeOnLifecycleDestroyed(viewLifecycleOwner)
             )
             setContent {
-                MlChallengeTheme {
-                    ProductsScreen(
-                        state = viewModel.uiState.collectAsState().value,
-                        effect = viewModel.uiSideEffect,
-                        navController = navController,
-                        triggerAction = {
-                            viewModel.handleAction(it)
-                        }
-                    )
-                }
+                ProductDetailScreen(
+                    state = viewModel.uiState.collectAsState().value,
+                    triggerAction = {
+                        viewModel.handleAction(it)
+                    }
+                )
             }
         }
     }

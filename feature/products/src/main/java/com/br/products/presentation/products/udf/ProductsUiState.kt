@@ -1,6 +1,7 @@
 package com.br.products.presentation.products.udf
 
 import androidx.paging.PagingData
+import com.br.products.presentation.model.ProductUi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
@@ -9,17 +10,6 @@ data class ProductsUiModel(
     val searchedTerm: String = "",
     val totalProducts: Int = 0,
     val products: Flow<PagingData<ProductUi>> = flowOf(PagingData.empty()),
-)
-
-data class ProductUi(
-    val id: String,
-    val name: String,
-    val price: String,
-    val imageUrl: String,
-    val condition: String,
-    val availableQuantity: Int,
-    val freeShipping: Int?,
-    val total: Int,
 )
 
 sealed class ProductsUiState(open val uiModel: ProductsUiModel) {
