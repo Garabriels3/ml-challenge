@@ -17,5 +17,5 @@ sealed class ProductsUiState(open val uiModel: ProductsUiModel) {
     data class OnResumedGridState(override val uiModel: ProductsUiModel) : ProductsUiState(uiModel)
     data class OnResumedListState(override val uiModel: ProductsUiModel) : ProductsUiState(uiModel)
     data class OnErrorState(override val uiModel: ProductsUiModel) : ProductsUiState(uiModel)
-    data class OnNetworkState(override val uiModel: ProductsUiModel) : ProductsUiState(uiModel)
+    data class OnNetworkErrorState(override val uiModel: ProductsUiModel) : ProductsUiState(uiModel)
 }

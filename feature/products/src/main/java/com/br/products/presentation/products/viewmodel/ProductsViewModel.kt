@@ -99,7 +99,7 @@ class ProductsViewModel(
             }
 
             is NetworkException -> {
-                _uiState.value = ProductsUiState.OnNetworkState(
+                _uiState.value = ProductsUiState.OnNetworkErrorState(
                     getCurrentUiModel().copy(
                         error = message
                     )

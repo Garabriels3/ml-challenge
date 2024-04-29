@@ -77,7 +77,7 @@ fun ProductsScreen(
                     }
                 }
 
-                is ProductsUiState.OnNetworkState -> {
+                is ProductsUiState.OnNetworkErrorState -> {
                     StateScreen(state = State.NetworkError)
                 }
             }

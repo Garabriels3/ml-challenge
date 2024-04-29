@@ -105,7 +105,7 @@ class ProductsViewModelTest {
                     )
                 )
                 stateObserver.onChanged(
-                    ProductsUiState.OnNetworkState(
+                    ProductsUiState.OnNetworkErrorState(
                         productUiModel.copy(
                             searchedTerm = searchTerm,
                             error = "No connection"

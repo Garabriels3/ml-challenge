@@ -10,8 +10,7 @@ import java.util.concurrent.TimeoutException
 
 internal fun Throwable.toRequestThrowable(): Throwable {
     return when (this) {
-        is ConnectException -> NetworkException()
-        is UnknownHostException,
+        is UnknownHostException, is ConnectException -> NetworkException()
         is TimeoutException,
         is SocketTimeoutException,
         is SocketException -> GenericException()
