@@ -5,7 +5,6 @@ import com.br.products.presentation.model.ProductDetailUi
 data class ProductDetailUiModel(
     val productDetail: ProductDetailUi = ProductDetailUi(),
     val productId: String = "",
-    val isExpandedAttributes: Boolean = false,
     val errorMessage: String? = null
 )
 

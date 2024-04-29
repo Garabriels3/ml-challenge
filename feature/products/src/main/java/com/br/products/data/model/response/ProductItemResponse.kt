@@ -17,7 +17,6 @@ data class ProductItemResponse(
     val availableQuantity: Int,
     @Json(name = "shipping")
     val shipping: ShippingResponse,
-    val total: Int = 0
 ) {
     fun conditionFormatted(): String {
         return when (condition) {

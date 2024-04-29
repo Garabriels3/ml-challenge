@@ -47,7 +47,6 @@ class ProductsRepositoryImpl(
             condition = conditionFormatted(),
             availableQuantity = availableQuantity,
             freeShipping = shipping.freeShipping,
-            total = total
         )
     }
 }

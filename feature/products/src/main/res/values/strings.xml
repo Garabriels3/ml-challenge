@@ -4,4 +4,7 @@
     <string name="products_free_shipping_label">Frete Grátis</string>
     <string name="products_search_bar_placeholder">Buscar</string>
     <string name="products_network_out_message">Você esta sem conexão no momento</string>
+
+    <string name="product_detail_buy_now_label">Comprar agora</string>
+    <string name="product_detail_pay_marketing_label">Pague via Mercado Pago!</string>
 </resources>

@@ -18,7 +18,7 @@ class ProductPagingSource(
 
 
             LoadResult.Page(
-                data = response.productsItem.map { it.copy(total = response.paging.total) },
+                data = response.productsItem,
                 prevKey = if (nextPage == 0) null else nextPage - params.loadSize,
                 nextKey = if (response.productsItem.isEmpty()) null else nextPage + params.loadSize
             )

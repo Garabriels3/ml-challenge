@@ -10,7 +10,6 @@ data class ProductItemDomain(
     val condition: String,
     val availableQuantity: Int,
     val freeShipping: Boolean,
-    val total: Int = 0
 ) {
     fun priceFormatted(): String {
         return formatPrice(price)

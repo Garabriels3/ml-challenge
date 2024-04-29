@@ -34,7 +34,6 @@ class ProductDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(
                 ViewCompositionStrategy.DisposeOnLifecycleDestroyed(viewLifecycleOwner)
@@ -42,6 +41,8 @@ class ProductDetailFragment : Fragment() {
             setContent {
                 ProductDetailScreen(
                     state = viewModel.uiState.collectAsState().value,
+                    effect = viewModel.uiSideEffect,
+                    navController = navController,
                     triggerAction = {
                         viewModel.handleAction(it)
                     }

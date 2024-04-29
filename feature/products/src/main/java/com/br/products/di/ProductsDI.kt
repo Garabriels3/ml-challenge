@@ -12,6 +12,7 @@ import com.br.products.data.datasource.remote.product_detail.ProductDetailRemote
 import com.br.products.data.repository.ProductDetailRepositoryImpl
 import com.br.products.data.repository.ProductsRepositoryImpl
 import com.br.products.data.repository.SearchProductsRepositoryImpl
+import com.br.products.data.service.ProductDetailService
 import com.br.products.data.service.ProductsService
 import com.br.products.domain.repository.ProductDetailRepository
 import com.br.products.domain.repository.ProductsRepository
@@ -38,6 +39,7 @@ class ProductsDI {
 
     private val data: Module = module {
         single { makeService<ProductsService>() }
+        single { makeService<ProductDetailService>() }
         single { provideDataStore(androidContext()) }
         factory<SearchProductsDataStore> { SearchProductsDataStoreImpl(get()) }
         factory<SearchProductsRepository> { SearchProductsRepositoryImpl(get()) }

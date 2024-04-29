@@ -1,5 +1,6 @@
 package com.br.design_system.compose.outlinedtextfield
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -36,6 +37,7 @@ fun CustomOutlinedTextField(
     OutlinedTextField(
         value = value,
         readOnly = readOnly,
+        enabled = !readOnly,
         modifier = modifier
             .shadow(
                 elevation = Elevation.low,
@@ -74,6 +76,9 @@ fun CustomOutlinedTextField(
         keyboardActions = keyboardActions,
         colors = OutlinedTextFieldDefaults.colors(
             unfocusedContainerColor = ColorApp.background,
+            disabledContainerColor = ColorApp.background,
+            disabledPlaceholderColor = ColorApp.textOnSurface,
+            disabledTextColor = ColorApp.textOnSurface,
             focusedContainerColor = ColorApp.background,
             focusedBorderColor = ColorApp.outline,
             unfocusedBorderColor = Color.Transparent,
@@ -88,6 +93,7 @@ fun CustomOutlinedTextFieldPreview() {
         CustomOutlinedTextField(
             modifier = Modifier,
             value = "",
+            readOnly = true,
             placeholder = "Pesquisar",
             onValueChange = {},
         )

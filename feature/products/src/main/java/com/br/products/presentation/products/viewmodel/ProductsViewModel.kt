@@ -124,7 +124,6 @@ class ProductsViewModel(
         condition = condition,
         availableQuantity = availableQuantity,
         freeShipping = setFreeShippingText(freeShipping),
-        total = total
     )
 
     private fun setFreeShippingText(freeShipping: Boolean) =

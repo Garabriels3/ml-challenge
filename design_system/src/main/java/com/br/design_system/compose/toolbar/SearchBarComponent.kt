@@ -40,7 +40,7 @@ fun SearchBarComponent(
     onClickSearchKeyboard: ((String) -> Unit) = {},
     onCancelClick: (() -> Unit)? = null,
     onValueChange: (String) -> Unit = {},
-    onClickSearchField: (() -> Unit)? = null,
+    onClickSearchField: (() -> Unit) = {},
     onBackNavigation: (() -> Unit)? = null,
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -76,7 +76,7 @@ fun SearchBarComponent(
             }
             CustomOutlinedTextField(
                 modifier = Modifier
-                    .clickable { onClickSearchField?.invoke() }
+                    .clickable { onClickSearchField.invoke() }
                     .weight(2f),
                 value = initialValue,
                 readOnly = readOnly,

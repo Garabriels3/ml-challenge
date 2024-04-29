@@ -205,14 +205,12 @@ class ProductsViewModelTest {
             condition = condition,
             availableQuantity = availableQuantity,
             freeShipping = freeShipping,
-            total = total
         )
     }
 
     private fun productDomainMock(): ProductItemDomain {
         return ProductItemDomain(
             title = "Motorola",
-            total = 0,
             price = 1499.0,
             thumbnail = "https://http2.mlstatic.com/D_NQ_NP_2X_901901-MLA45600093841_042021-F.webp",
             condition = "Novo",

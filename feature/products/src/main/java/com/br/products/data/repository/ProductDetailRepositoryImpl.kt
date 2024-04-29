@@ -1,10 +1,8 @@
 package com.br.products.data.repository
 
 import com.br.products.data.datasource.remote.product_detail.ProductDetailRemoteDataSource
-import com.br.products.data.model.response.AttributeResponse
 import com.br.products.data.model.response.PictureResponse
 import com.br.products.data.model.response.ProductDetailResponse
-import com.br.products.domain.model.AttributeDomain
 import com.br.products.domain.model.PictureDomain
 import com.br.products.domain.model.ProductDetailDomain
 import com.br.products.domain.repository.ProductDetailRepository
@@ -27,18 +25,10 @@ class ProductDetailRepositoryImpl(
             price = price,
             pictures = pictures.map { it.toDomain() },
             freeShipping = shipping.freeShipping,
+            permalink = permalink,
             condition = condition,
             warranty = warranty,
             acceptsMercadoPago = acceptsMercadoPago,
-            attributes = attributes.map { it.toDomain() }
-        )
-    }
-
-    private fun AttributeResponse.toDomain(): AttributeDomain {
-        return AttributeDomain(
-            id = id,
-            name = name,
-            description = description
         )
     }
 

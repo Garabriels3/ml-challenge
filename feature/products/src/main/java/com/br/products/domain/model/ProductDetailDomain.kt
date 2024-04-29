@@ -7,22 +7,16 @@ data class ProductDetailDomain(
     val title: String,
     val price: Double,
     val pictures: List<PictureDomain>,
-    val attributes: List<AttributeDomain>,
-    val warranty: String,
+    val warranty: String? = null,
     val condition: String,
     val acceptsMercadoPago: Boolean,
     val freeShipping: Boolean,
+    val permalink: String,
 ) {
     fun priceFormatted(): String {
         return formatPrice(price)
     }
 }
-
-data class AttributeDomain(
-    val id: String,
-    val name: String,
-    val description: String
-)
 
 data class PictureDomain(
     val id: String,

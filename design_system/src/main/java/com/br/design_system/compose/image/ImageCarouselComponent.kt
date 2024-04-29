@@ -1,20 +1,23 @@
 package com.br.design_system.compose.image
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.br.design_system.theme.ColorApp
 import com.br.design_system.theme.MlChallengeTheme
+import com.br.design_system.theme.Sizing
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalPagerApi::class)
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun ImageCarouselComponent(imageUrls: List<String>) {
     val pagerState = rememberPagerState(pageCount = imageUrls.size)
@@ -30,9 +33,11 @@ fun ImageCarouselComponent(imageUrls: List<String>) {
                 )
             }
         }
+        Spacer(modifier = Modifier.height(Sizing.scale12))
         HorizontalPagerIndicator(
             pagerState = pagerState,
-            modifier = Modifier
+            modifier = Modifier,
+            activeColor = ColorApp.primary
         )
     }
 }

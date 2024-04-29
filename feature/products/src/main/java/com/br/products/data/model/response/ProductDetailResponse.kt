@@ -18,20 +18,9 @@ data class ProductDetailResponse(
     @Json(name = "shipping")
     val shipping: ShippingResponse,
     @Json(name = "warranty")
-    val warranty: String,
-    @Json(name = "attributes")
-    val attributes: List<AttributeResponse>,
+    val warranty: String? = null,
     @Json(name = "accepts_mercadopago")
     val acceptsMercadoPago: Boolean,
-)
-
-data class AttributeResponse(
-    @Json(name = "id")
-    val id: String,
-    @Json(name = "name")
-    val name: String,
-    @Json(name = "value_name")
-    val description: String
 )
 
 data class PictureResponse(

@@ -97,7 +97,6 @@ private fun ProductItemComponentPreview() {
                 condition = "Novo",
                 availableQuantity = 10,
                 freeShipping = R.string.products_free_shipping_label,
-                total = 0,
             )
         )
     }

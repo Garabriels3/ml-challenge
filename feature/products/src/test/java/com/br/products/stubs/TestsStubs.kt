@@ -12,7 +12,6 @@ fun productsDomainMock(): List<ProductItemDomain> {
             condition = "Novo",
             availableQuantity = 100,
             freeShipping = false,
-            total = 916
         ),
         ProductItemDomain(
             id = "MLA810645362",
@@ -22,7 +21,6 @@ fun productsDomainMock(): List<ProductItemDomain> {
             condition = "Novo",
             availableQuantity = 100,
             freeShipping = false,
-            total = 916
         ),
         ProductItemDomain(
             id = "MLA810645375",
@@ -32,7 +30,6 @@ fun productsDomainMock(): List<ProductItemDomain> {
             condition = "Novo",
             availableQuantity = 100,
             freeShipping = false,
-            total = 916
         ),
         ProductItemDomain(
             id = "MLA810645375",
@@ -42,7 +39,6 @@ fun productsDomainMock(): List<ProductItemDomain> {
             condition = "Novo",
             availableQuantity = 100,
             freeShipping = false,
-            total = 916
         ),
         ProductItemDomain(
             id = "MLA810645375",
@@ -52,7 +48,6 @@ fun productsDomainMock(): List<ProductItemDomain> {
             condition = "Novo",
             availableQuantity = 100,
             freeShipping = false,
-            total = 916
         ),
         ProductItemDomain(
             id = "MLA810645375",
@@ -62,7 +57,6 @@ fun productsDomainMock(): List<ProductItemDomain> {
             condition = "Novo",
             availableQuantity = 100,
             freeShipping = false,
-            total = 916
         ),
         ProductItemDomain(
             id = "MLA810645375",
@@ -72,7 +66,6 @@ fun productsDomainMock(): List<ProductItemDomain> {
             condition = "Novo",
             availableQuantity = 100,
             freeShipping = false,
-            total = 916
         ),
         ProductItemDomain(
             id = "MLA810645375",
@@ -82,7 +75,6 @@ fun productsDomainMock(): List<ProductItemDomain> {
             condition = "Novo",
             availableQuantity = 100,
             freeShipping = false,
-            total = 916
         ),
         ProductItemDomain(
             id = "MLA810645375",
@@ -92,7 +84,6 @@ fun productsDomainMock(): List<ProductItemDomain> {
             condition = "Novo",
             availableQuantity = 100,
             freeShipping = false,
-            total = 916
         ),
         ProductItemDomain(
             id = "MLA805330648",
@@ -102,7 +93,6 @@ fun productsDomainMock(): List<ProductItemDomain> {
             condition = "Novo",
             availableQuantity = 1,
             freeShipping = true,
-            total = 916
         )
     )
 }

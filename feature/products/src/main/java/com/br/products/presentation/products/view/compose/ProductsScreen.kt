@@ -1,7 +1,11 @@
 package com.br.products.presentation.products.view.compose
 
+import android.os.Bundle
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -45,35 +49,37 @@ fun ProductsScreen(
         val noBottomPadding = paddingValues.noBottomPadding()
         val products = state.uiModel.products.collectAsLazyPagingItems()
         ObserveUiEffects(effect, navController = navController)
-        when (state) {
-            is ProductsUiState.OnResumedGridState -> {
-                GridProductsComponent(
-                    paddingValues = noBottomPadding,
-                    pagingProducts = products,
-                    triggerAction = triggerAction
-                )
-            }
-
-            is ProductsUiState.OnResumedListState -> {
-                ListProductsComponent(
-                    paddingValues = noBottomPadding,
-                    pagingProducts = products,
-                    triggerAction = triggerAction
-                )
-            }
-
-            is ProductsUiState.OnLoadingState -> {
-                LoadingScreen()
-            }
-
-            is ProductsUiState.OnErrorState -> {
-                StateScreen(state = State.Error) {
-                    triggerAction(ProductsUiAction.OnRetryAction)
+        Column(modifier = Modifier.fillMaxSize()) {
+            when (state) {
+                is ProductsUiState.OnResumedGridState -> {
+                    GridProductsComponent(
+                        paddingValues = noBottomPadding,
+                        pagingProducts = products,
+                        triggerAction = triggerAction
+                    )
                 }
-            }
 
-            is ProductsUiState.OnNetworkState -> {
-                StateScreen(state = State.NetworkError)
+                is ProductsUiState.OnResumedListState -> {
+                    ListProductsComponent(
+                        paddingValues = noBottomPadding,
+                        pagingProducts = products,
+                        triggerAction = triggerAction
+                    )
+                }
+
+                is ProductsUiState.OnLoadingState -> {
+                    LoadingScreen()
+                }
+
+                is ProductsUiState.OnErrorState -> {
+                    StateScreen(state = State.Error) {
+                        triggerAction(ProductsUiAction.OnRetryAction)
+                    }
+                }
+
+                is ProductsUiState.OnNetworkState -> {
+                    StateScreen(state = State.NetworkError)
+                }
             }
         }
     }
@@ -92,10 +98,10 @@ private fun ObserveUiEffects(
             }
 
             is ProductsUiSideEffect.OnNavigateToDetailEffect -> {
-//                navController?.navigate(
-//                    R.id.action_productsFragment_to_productDetailFragment,
-//                    Bundle().apply { putString("productId", it.productId) }
-//                )
+                navController?.navigate(
+                    R.id.action_productsFragment_to_productDetailFragment,
+                    Bundle().apply { putString("productId", it.productId) }
+                )
             }
         }
     }

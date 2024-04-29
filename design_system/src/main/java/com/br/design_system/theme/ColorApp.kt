@@ -14,6 +14,7 @@ object ColorApp {
     val textOnSurface = Color(0xFF000000)  // Preto para textos sobre superfície
     val textOnSurfaceDark = Color(0xFFFFFFFF)  // Branco para textos sobre superfície no modo noturno
     val textGreen = Color(0xFF388E3C)  // Verde para textos de sucesso
+    val blueMercadoPago = Color(0xFF009EE3)  // Azul Mercado Pago
 
     // Cores de Alerta
     val error = Color(0xFFD32F2F)  // Vermelho para erros

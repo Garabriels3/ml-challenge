@@ -52,7 +52,8 @@ class SearchProductViewModel(
                 _uiState.value = SearchProductUiState.OnResumeState(
                     getCurrentUiModel().copy(
                         productName = "",
-                        isSearchButtonEnabled = ImeAction.None
+                        isSearchButtonEnabled = ImeAction.None,
+                        productsHistory = originalTerms
                     )
                 )
             }

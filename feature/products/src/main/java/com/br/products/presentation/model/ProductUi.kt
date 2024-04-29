@@ -8,5 +8,4 @@ data class ProductUi(
     val condition: String,
     val availableQuantity: Int,
     val freeShipping: Int?,
-    val total: Int,
 )

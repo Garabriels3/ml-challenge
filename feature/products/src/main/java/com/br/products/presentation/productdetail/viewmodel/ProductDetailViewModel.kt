@@ -5,13 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.br.infra.coroutines.MutableSingleLiveEvent
 import com.br.network.exception.GenericException
 import com.br.network.exception.NetworkException
-import com.br.products.domain.model.AttributeDomain
-import com.br.products.domain.model.PictureDomain
-import com.br.products.domain.model.ProductDetailDomain
 import com.br.products.domain.usecase.product_detail.GetProductDetailUseCase
-import com.br.products.presentation.model.AttributeUi
-import com.br.products.presentation.model.PictureUi
-import com.br.products.presentation.model.ProductDetailUi
+import com.br.products.presentation.mapper.productDetailDomainToUiModel
 import com.br.products.presentation.productdetail.udf.ProductDetailUiAction
 import com.br.products.presentation.productdetail.udf.ProductDetailUiModel
 import com.br.products.presentation.productdetail.udf.ProductDetailUiSideEffect
@@ -50,16 +45,8 @@ class ProductDetailViewModel(
                 getProductDetail(action.productId)
             }
 
-            is ProductDetailUiAction.OnClickExpandAttributes -> {
-                _uiState.value = ProductDetailUiState.OnResumedState(
-                    getCurrentUiModel().copy(
-                        isExpandedAttributes = !action.currentExpandAttributes
-                    )
-                )
-            }
-
-            is ProductDetailUiAction.OnClickNavigateToExternalBrowser -> {
-                _uiSideEffect.emit(ProductDetailUiSideEffect.OnNavigateBack)
+            is ProductDetailUiAction.OnClickToBuy -> {
+                _uiSideEffect.emit(ProductDetailUiSideEffect.OnNavigateToBrowser(action.url))
             }
 
             is ProductDetailUiAction.OnClickNavigateBack -> {
@@ -118,32 +105,6 @@ class ProductDetailViewModel(
                 )
             }
         }
-    }
-
-    private fun ProductDetailDomain.productDetailDomainToUiModel() = ProductDetailUi(
-        id = id,
-        title = title,
-        pictures = pictures.pictureDomainToUi(),
-        attributes = attributes.attributeDomainToUi(),
-        price = priceFormatted(),
-        warranty = warranty,
-        acceptsMercadoPago = acceptsMercadoPago,
-        freeShipping = freeShipping
-    )
-
-    private fun List<AttributeDomain>.attributeDomainToUi() = map {
-        AttributeUi(
-            id = it.id,
-            name = it.name,
-            description = it.description
-        )
-    }
-
-    private fun List<PictureDomain>.pictureDomainToUi() = map {
-        PictureUi(
-            id = it.id,
-            url = it.url
-        )
     }
 
     private fun getCurrentUiModel() = checkNotNull(_uiState.value).uiModel
