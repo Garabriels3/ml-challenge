@@ -44,7 +44,6 @@ class ProductsViewModelTest {
 
     private val getProductsUseCase = mockk<GetProductsUseCase>()
     private val viewModel = ProductsViewModel(getProductsUseCase)
-    private val log = mockk<Log>(relaxed = true)
 
     private val stateObserver: Observer<ProductsUiState> = mockk(relaxed = true)
     private val sideEffectObserver = mockk<Observer<ProductsUiSideEffect>>(relaxed = true)
@@ -195,7 +194,6 @@ class ProductsViewModelTest {
         condition: String = "Novo",
         availableQuantity: Int = 0,
         freeShipping: Int = 0,
-        total: Int = 0
     ): ProductUi {
         return ProductUi(
             id = id,
