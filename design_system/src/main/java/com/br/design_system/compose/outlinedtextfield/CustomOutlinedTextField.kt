@@ -1,6 +1,5 @@
 package com.br.design_system.compose.outlinedtextfield
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -19,6 +18,22 @@ import com.br.design_system.theme.ColorApp
 import com.br.design_system.theme.Elevation
 import com.br.design_system.theme.FontSize
 import com.br.design_system.theme.MlChallengeTheme
+
+/**
+ * CustomOutlinedTextField é um componente de campo de texto personalizado com contorno.
+ *
+ * @param modifier Modificador Compose para aplicar ao campo de texto.
+ * @param value O valor atual do campo de texto.
+ * @param label O texto do rótulo a ser exibido quando não há texto no campo.
+ * @param placeholder O texto do placeholder a ser exibido no campo de texto quando não há foco e o campo está vazio.
+ * @param keyboardOptions Opções de configuração do teclado, como tipo de teclado e correção automática.
+ * @param keyboardActions Ações do teclado, como a ação do botão Enter.
+ * @param singleLine Se verdadeiro, o campo de texto será de uma única linha. Caso contrário, será de várias linhas.
+ * @param readOnly Se verdadeiro, o campo de texto será somente leitura.
+ * @param leadingIcon Um ícone a ser exibido antes do campo de texto.
+ * @param leadingIconContentDescription A descrição do conteúdo do ícone principal. Isso será anunciado para leitores de tela.
+ * @param onValueChange Uma função a ser chamada sempre que o valor do campo de texto mudar.
+ */
 
 @Composable
 fun CustomOutlinedTextField(

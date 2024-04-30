@@ -14,6 +14,10 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
 
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -88,9 +92,12 @@ dependencies {
 
     // Datastore
     implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.junit.ktx)
 
     testImplementation(libs.okhttp)
-    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    testImplementation(libs.koin.test)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.core.testing)
     testImplementation(libs.androidx.paging.testing)
     testImplementation(libs.junit)
     testImplementation(libs.mockk)

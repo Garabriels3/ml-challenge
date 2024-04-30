@@ -35,6 +35,7 @@ pagingTesting = "3.3.0-beta01"
 viewpager = "1.0.0"
 accompanistPager = "0.13.0"
 accompanistPagerIndicators = "0.13.0"
+junitKtx = "1.1.5"
 
 
 [libraries]
@@ -49,6 +50,10 @@ material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
+
+# Roboletric
+robolectric = { group = "org.robolectric", name = "robolectric", version = "4.8.1" }
+core_testing = { group = "androidx.arch.core", name = "core-testing", version = "2.2.0" }
 
 # Navigation
 navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
@@ -111,6 +116,7 @@ androidx-paging-testing = { group = "androidx.paging", name = "paging-testing", 
 androidx-viewpager = { group = "androidx.viewpager", name = "viewpager", version.ref = "viewpager" }
 accompanist-pager = { group = "com.google.accompanist", name = "accompanist-pager", version.ref = "accompanistPager" }
 accompanist-pager-indicators = { group = "com.google.accompanist", name = "accompanist-pager-indicators", version.ref = "accompanistPagerIndicators" }
+androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

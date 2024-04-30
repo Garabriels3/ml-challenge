@@ -22,6 +22,16 @@ import com.br.design_system.theme.MlChallengeTheme
 import com.br.design_system.theme.Sizing
 import com.br.design_system.theme.Spacing
 
+/**
+ * TitleToolbarComponent é um componente Composable que exibe uma barra de ferramentas com um título e um botão de navegação para trás.
+ *
+ * @param title O título a ser exibido na barra de ferramentas.
+ * @param onBackNavigation Um callback que será chamado quando o botão de navegação para trás for clicado.
+ *
+ * Este componente exibe uma barra de ferramentas com um título e um botão de navegação para trás. O título é exibido com um overflow de texto para elipses se for muito longo para caber na tela.
+ * O botão de navegação para trás é exibido à esquerda do título. Quando este botão é clicado, o callback `onBackNavigation` é chamado.
+ */
+
 @Composable
 fun TitleToolbarComponent(
     title: String,

@@ -31,6 +31,27 @@ import com.br.design_system.theme.MlChallengeTheme
 import com.br.design_system.theme.Sizing
 import com.br.design_system.theme.Spacing
 
+/**
+ * SearchBarComponent é um componente Composable que exibe uma barra de pesquisa.
+ *
+ * @param value O valor atual do campo de pesquisa.
+ * @param placeholder O texto do placeholder a ser exibido no campo de pesquisa quando não há foco e o campo está vazio.
+ * @param readOnly Se verdadeiro, o campo de pesquisa será somente leitura.
+ * @param searchButtonState O estado do botão de pesquisa no teclado. Este é um valor do enum `ImeAction`.
+ * @param onClickSearchKeyboard Um callback que será chamado quando o botão de pesquisa no teclado for clicado.
+ * @param onCancelClick Um callback opcional que será chamado quando o botão "Cancelar" for clicado. Este botão só é exibido quando o campo de pesquisa não está vazio.
+ * @param onValueChange Uma função a ser chamada sempre que o valor do campo de pesquisa mudar.
+ * @param onClickSearchField Um callback que será chamado quando o campo de pesquisa for clicado.
+ * @param onBackNavigation Um callback opcional que será chamado quando o botão de navegação para trás for clicado.
+ *
+ * Este componente exibe um campo de pesquisa com um botão de navegação para trás opcional e um botão "Cancelar" opcional.
+ * O botão de navegação para trás é exibido se o callback `onBackNavigation` for fornecido.
+ * O botão "Cancelar" é exibido se o callback `onCancelClick` for fornecido e o campo de pesquisa não está vazio.
+ * Quando o botão de pesquisa no teclado é clicado, o callback `onClickSearchKeyboard` é chamado.
+ * Quando o campo de pesquisa é clicado, o callback `onClickSearchField` é chamado.
+ * Quando o valor do campo de pesquisa muda, a função `onValueChange` é chamada.
+ */
+
 @Composable
 fun SearchBarComponent(
     value: String = "",
