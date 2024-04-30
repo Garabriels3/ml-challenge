@@ -52,6 +52,7 @@ A funcionalidade de produtos segue a Arquitetura Limpa, dividida em três camada
 
 * **Testes de Unidade:** Foco em testar unidades de código isoladas, como ViewModels e Use Cases, usando frameworks de mocking como MockK. Verificação da ordem correta e dos dados corretos dos estados emitidos.
 * **Testes de Integração:** Foco em testar a integração das camadas Data, desde o Repository até o Retrofit, usando MockWebServer para simular respostas da API.
+* **OBS:* O projeto não possui cobertura completa(Não me sobrou muito tempo), o objetivo aqui foi apenas fazer amostras de cada tipo de teste proposto(Unitario e integração) para demonstrar e discutir sobre cada um. E para isso usei um dos fluxos para mostrar.
 
 ## Benefícios da Arquitetura e das Tecnologias Escolhidas
 
@@ -72,4 +73,8 @@ A funcionalidade de produtos segue a Arquitetura Limpa, dividida em três camada
 * Retrofit: Para comunicação com APIs REST.
 * Coil: Para carregamento e exibição de imagens.
 * Paging 3: Para lidar com grandes conjuntos de dados de forma eficiente.
+
+## White Board do projeto
+![image](https://github.com/Garabriels3/ml-mini-app/assets/60590850/685f51f6-f747-4d38-a82e-819d27af226e)
+
 
