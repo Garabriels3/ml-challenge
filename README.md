@@ -19,33 +19,27 @@ O projeto é dividido em módulos para promover a reutilização de código, a s
 
 A funcionalidade de produtos segue a Arquitetura Limpa, dividida em três camadas:
 
-**Data**
+**Data-  Responsável por recuperar e persistir dados e consumo de dados vindos de forma remota**
 
-* Responsável por recuperar e persistir dados e consumo de dados vindos de forma remota.
 * **DataSource:** Responsável por interagir diretamente com interfaces do consumo de dados remotos ou locais.
 * **Repository-Impl:** Implementa a lógica de acesso a dados, interagindo com DataSources locais e remotos e faz a estrategia de cacheamento se necessario.
 * **DataModelResponse:** Data Class exclusiva do layer de data para mapear dados de origem local ou remota.
 
-**Domain**
+**Domain - Contém a lógica de negócios do aplicativo** 
 
-* Contém a lógica de negócios do aplicativo.
 * **DataModelDomain:** Data Class exclusiva do layer de domain para executar possiveis regras de negocio de maneira isolada e sem preocupações com mudanças que possam acontecer de outros contextos de módulos
 * **Interface Repository:** Interface para fazer boundary com layer de data para evitar acoplamento e manter domain isolado.
 * **UseCase:** Implementam casos de uso específicos, orquestrando a lógica de negócios e interagindo com os repositórios.
 
-**Presentation**
-
-Tornar os estados, ações e eventos mais claros com o MVI, mantendo a separação de responsabilidades com o MVVM.
+**Presentation - Tornar os estados, ações e eventos mais claros com o MVI, mantendo a separação de responsabilidades com o MVVM.**
 
 **MVVM:**
 
-* Boa separação de responsabilidades.
-* Falta clareza nos estados e ações.
+* Boa separação de responsabilidades usando ViewModel.
 
 **MVI:**
 
-* Complementa o MVVM trazendo clareza.
-* Permite que um complete o outro.
+* Complementa o MVVM trazendo clareza maior do que são os estados, ações e efeitos colaterais.
 
 **Funcionamento Geral Presentation:**
 
