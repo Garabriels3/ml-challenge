@@ -23,6 +23,17 @@ import com.br.design_system.theme.FontSize
 import com.br.design_system.theme.MlChallengeTheme
 import com.br.design_system.theme.Spacing
 
+/**
+ * StateScreen é um componente Composable que exibe diferentes estados de tela com base no estado fornecido.
+ * Este componente é geralmente usado para exibir telas de erro, vazio ou sem conexão.
+ *
+ * @param state O estado da tela a ser exibido. Este é um valor do enum `State`, que inclui `Empty`, `Error` e `NetworkError`.
+ * @param onTryAgain Um callback opcional que será chamado quando o botão "Tentar novamente" for clicado. Este botão só é exibido para os estados `Error` e `NetworkError`.
+ *
+ * Cada estado tem uma imagem e um texto associados, que são exibidos no centro da tela. Se o estado for `Error` ou `NetworkError`, um botão "Tentar novamente" também será exibido.
+ * Quando este botão é clicado, o callback `onTryAgain` é chamado.
+ */
+
 @Composable
 fun StateScreen(state: State, onTryAgain: (() -> Unit)? = null) {
     Column(
@@ -66,7 +77,7 @@ enum class State(
         textId = R.string.empty_state_title
     ),
     Error(
-        drawableId = R.drawable.illu_no_connection,
+        drawableId = R.drawable.illu_error,
         textId = R.string.error_state_title,
     ),
     NetworkError(

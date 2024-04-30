@@ -12,6 +12,16 @@ import com.br.design_system.theme.ColorApp
 import com.br.design_system.theme.MlChallengeTheme
 import com.br.design_system.theme.Sizing
 
+/**
+ * LoadingScreen é um componente Composable que exibe um indicador de progresso circular no centro da tela.
+ * Este componente é geralmente usado para indicar que algum processo está em andamento e o usuário deve aguardar.
+ *
+ * O indicador de progresso é centrado horizontal e verticalmente na tela. O fundo da tela é definido para `ColorApp.background`.
+ * O tamanho do indicador de progresso é definido para `Sizing.scale120` e a cor para `ColorApp.primary`.
+ *
+ * Este componente não recebe nenhum parâmetro e não tem estado. Ele apenas exibe um indicador de progresso.
+ */
+
 @Composable
 fun LoadingScreen() {
     Column(

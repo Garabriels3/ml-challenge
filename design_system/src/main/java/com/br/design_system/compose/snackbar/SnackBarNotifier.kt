@@ -16,6 +16,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.br.design_system.theme.ColorApp
 import com.br.design_system.theme.MlChallengeTheme
 
+/**
+ * SnackBarNotifier é um componente que exibe uma Snackbar com uma mensagem para o usuário.
+ *
+ * @param snackBarHostState O estado do host da Snackbar. Este estado controla a exibição da Snackbar.
+ * @param status O status da Snackbar, que determina as cores de fundo e do texto da Snackbar.
+ * @param modifier Modificador Compose para aplicar à Snackbar.
+ *
+ * Este componente usa o `SnackbarHost` do Material-UI Compose para exibir a Snackbar. A Snackbar é exibida
+ * com uma cor de fundo e de texto que correspondem ao `status` fornecido.
+ *
+ * O `snackBarHostState` é usado para controlar a exibição da Snackbar. Você pode usar a função `showSnackbar` do
+ * `snackBarHostState` para exibir uma Snackbar com uma mensagem.
+ */
+
 @Composable
 fun SnackBarNotifier(
     snackBarHostState: SnackbarHostState,

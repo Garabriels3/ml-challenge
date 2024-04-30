@@ -17,6 +17,19 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 
+/**
+ * ImageCarouselComponent é um componente Composable que exibe um carrossel de imagens.
+ *
+ * @param imageUrls Uma lista de URLs de imagens a serem exibidas no carrossel.
+ *
+ * Este componente usa o `HorizontalPager` do Accompanist para exibir um carrossel de imagens. Cada página do carrossel exibe uma imagem da lista `imageUrls`.
+ * A imagem é carregada e exibida usando o componente `ImageFetchComponent`.
+ *
+ * O estado do carrossel é mantido usando `rememberPagerState`, que mantém o estado atual da página e o total de páginas.
+ *
+ * Abaixo do carrossel, um `HorizontalPagerIndicator` é exibido, que mostra um indicador para cada página do carrossel. O indicador da página atual é destacado.
+ */
+
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun ImageCarouselComponent(imageUrls: List<String>) {
