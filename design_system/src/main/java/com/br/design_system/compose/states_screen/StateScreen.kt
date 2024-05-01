@@ -6,13 +6,17 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -59,8 +63,15 @@ fun StateScreen(state: State, onTryAgain: (() -> Unit)? = null) {
         onTryAgain?.let {
             Spacer(modifier = Modifier.height(Spacing.scale24))
             Button(
-                onClick = { onTryAgain() },
-                modifier = Modifier.align(Alignment.CenterHorizontally)
+                modifier = Modifier.fillMaxWidth(),
+                shape = MaterialTheme.shapes.medium,
+                colors = ButtonColors(
+                    containerColor = ColorApp.primary,
+                    contentColor = ColorApp.textOnPrimary,
+                    disabledContentColor = Color.Gray,
+                    disabledContainerColor = Color.Gray
+                ),
+                onClick = { onTryAgain() }
             ) {
                 Text(text = stringResource(id = R.string.try_again_button))
             }
