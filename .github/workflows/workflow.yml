@@ -32,17 +32,10 @@ jobs:
         run: ./gradlew testDebugUnitTest
 
       - name: Detekt - Static Code Analysis
-        uses: sider/gh-actions/detekt@latest
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew detekt
 
-      - name: Reviewdog - Add comments to PRs
-        uses: reviewdog/action-github-app@v2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          tool_name: detekt
-          tool_config: .detekt/config.yml
-          level: warning
+      - name: Lint - Static Code Analysis
+        run: ./gradlew lintDebug
 
       - name: Upload APK to Play Store (opcional)
         uses: r0adkll/upload-google-play@v1
