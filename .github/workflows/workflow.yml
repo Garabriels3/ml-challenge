@@ -22,10 +22,13 @@ jobs:
       - name: Set up Android SDK
         uses: Swisyn/setup-android-sdk@v1
 
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
       - name: Build debug APK
         run: ./gradlew assembleDebug
 
-      - name: Run unit tests (opcional)
+      - name: Run unit tests
         run: ./gradlew testDebugUnitTest
 
       - name: Upload APK to Play Store (opcional)
