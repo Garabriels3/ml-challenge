@@ -20,7 +20,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Set up Android SDK
-        uses: android/setup-android@v2
+        uses: Swisyn/setup-android-sdk@v1
 
       - name: Build debug APK
         run: ./gradlew assembleDebug
