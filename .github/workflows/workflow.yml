@@ -28,14 +28,14 @@ jobs:
       - name: Build debug APK
         run: ./gradlew assembleDebug
 
-      - name: Run unit tests
-        run: ./gradlew testDebugUnitTest
-
       - name: Detekt - Static Code Analysis
         run: ./gradlew detekt
 
       - name: Lint - Static Code Analysis
         run: ./gradlew lintDebug
+
+      - name: Run unit tests
+        run: ./gradlew testDebugUnitTest
 
       - name: Upload APK to Play Store (opcional)
         uses: r0adkll/upload-google-play@v1
