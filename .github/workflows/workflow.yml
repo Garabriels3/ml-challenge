@@ -28,10 +28,10 @@ jobs:
       - name: Build debug APK
         run: ./gradlew assembleDebug
 
-      - name: Detekt - Static Code Analysis
+      - name: Detekt - Static Code Analysis (opcional)
         run: ./gradlew detekt
 
-      - name: Lint - Static Code Analysis
+      - name: Lint - Static Code Analysis (opcional)
         run: ./gradlew lintDebug
 
       - name: Install Reviewdog
