@@ -1,0 +1,20 @@
+build:
+  baseline: path/to/baseline.xml
+
+config:
+
+reports:
+  html:
+    enabled: true
+    destination: path/to/detekt.html # Caminho para o relatório HTML
+  xml:
+    enabled: true
+    destination: path/to/detekt.xml  # Caminho para o relatório XML
+  txt:
+    enabled: true
+    destination: path/to/detekt.txt  # Caminho para o relatório TXT
+  sarif:
+    enabled: true
+    destination: path/to/detekt.sarif # Caminho para o relatório SARIF
+
+# Definir as regras aqui...

@@ -4,4 +4,9 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid) apply false
     alias(libs.plugins.androidLibrary) apply false
     alias(libs.plugins.jetbrainsKotlinJvm) apply false
+    id("io.gitlab.arturbosch.detekt").version("1.22.0")
+}
+
+allprojects {
+    apply(plugin = "io.gitlab.arturbosch.detekt")
 }
