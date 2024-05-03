@@ -36,10 +36,8 @@ jobs:
         run: ./gradlew detekt
         continue-on-error: true
 
-      - name: Reviewdog
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./bin/reviewdog -f=checkstyle < /dev/stdin <<< "$(./gradlew detekt -q)"
+      - name: Setup reviewdog
+        uses: reviewdog/action-setup@v1.3.0          
 
       - name: Lint - Static Code Analysis (opcional)
         run: ./gradlew lintDebug
