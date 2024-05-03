@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import com.br.products.presentation.productdetail.udf.ProductDetailUiAction
 import com.br.products.presentation.productdetail.view.compose.ProductDetailScreen
@@ -40,7 +40,7 @@ class ProductDetailFragment : Fragment() {
             )
             setContent {
                 ProductDetailScreen(
-                    state = viewModel.uiState.collectAsState().value,
+                    state = viewModel.uiState.collectAsStateWithLifecycle().value,
                     effect = viewModel.uiSideEffect,
                     navController = navController,
                     triggerAction = {

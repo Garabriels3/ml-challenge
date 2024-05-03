@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material3)
+    implementation(libs.compose.runtime.lifecycle)
     implementation(libs.activity.compose)
 
     implementation(libs.navigation.fragment.ktx)

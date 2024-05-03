@@ -63,6 +63,7 @@ navigation-testing = { group = "androidx.navigation", name = "navigation-testing
 # Compose
 compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
+compose-runtime-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version = "2.7.0-compose" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 ui = { group = "androidx.compose.ui", name = "ui", version = "1.6.6" }
 ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics", version = "1.6.6" }
