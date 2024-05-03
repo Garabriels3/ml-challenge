@@ -1,0 +1,8 @@
+runner:
+  name: github-pr-review
+  fail_on_error: true
+reporter:
+
+  name: github-pr-review
+  filter_mode:
+level: warning
