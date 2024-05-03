@@ -34,6 +34,10 @@ jobs:
       - name: Lint - Static Code Analysis
         run: ./gradlew lintDebug
 
+      - name: Install Reviewdog
+        run: | 
+          curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b ./bin
+
       - name: Run unit tests
         run: ./gradlew testDebugUnitTest
 
