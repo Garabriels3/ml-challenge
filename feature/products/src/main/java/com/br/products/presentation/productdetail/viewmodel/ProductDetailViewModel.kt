@@ -82,7 +82,7 @@ class ProductDetailViewModel(
     private fun Throwable.handleError() {
         when (this) {
             is NetworkException -> {
-                _uiState.value = ProductDetailUiState.OnNetworkState(
+                _uiState.value = ProductDetailUiState.OnNetworkErrorState(
                     getCurrentUiModel().copy(
                         errorMessage = message
                     )

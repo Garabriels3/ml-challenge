@@ -75,7 +75,7 @@ fun ProductDetailScreen(
                 ProductDetailContent(state.uiModel.productDetail, it, triggerAction)
             }
 
-            is ProductDetailUiState.OnNetworkState -> {
+            is ProductDetailUiState.OnNetworkErrorState -> {
                 StateScreen(state = State.NetworkError) {
                     triggerAction(ProductDetailUiAction.OnClickTryAgain(state.uiModel.productId))
                 }

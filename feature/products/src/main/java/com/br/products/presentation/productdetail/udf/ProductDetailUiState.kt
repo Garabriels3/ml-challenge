@@ -16,6 +16,6 @@ sealed class ProductDetailUiState(open val uiModel: ProductDetailUiModel) {
     data class OnErrorState(override val uiModel: ProductDetailUiModel) :
         ProductDetailUiState(uiModel)
 
-    data class OnNetworkState(override val uiModel: ProductDetailUiModel) :
+    data class OnNetworkErrorState(override val uiModel: ProductDetailUiModel) :
         ProductDetailUiState(uiModel)
 }
