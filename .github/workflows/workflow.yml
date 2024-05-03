@@ -32,17 +32,14 @@ jobs:
         run: |
               curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b ./bin
 
-      - name: Detekt and Reviewdog
-        try:
-          - name: Detekt - Static Code Analysis
-            run: ./gradlew detekt
-          - name: Reviewdog
-            env:
+      - name: Detekt - Static Code Analysis (opcional)
+        run: ./gradlew detekt
+        continue-on-error: true
+
+      - name: Reviewdog
+        env:
               REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            run: ./bin/reviewdog -f=checkstyle < /dev/stdin <<< "$(./gradlew detekt -q | tee /dev/tty)"
-        catch:
-          - name: Log detekt errors
-            run: echo "detekt failed, but continuing..."
+        run: ./bin/reviewdog -f=checkstyle < /dev/stdin <<< "$(./gradlew detekt -q | tee /dev/tty)"
 
       - name: Lint - Static Code Analysis (opcional)
         run: ./gradlew lintDebug
