@@ -12,7 +12,7 @@ O projeto é dividido em módulos para promover a reutilização de código, a s
 * **Network:** Gerencia a comunicação com a rede utilizando Retrofit.
 * **Infrastructure:** Fornece infraestrutura de suporte, como utilitários e classes de extensão.
 * **Design System:** Contém componentes de interface de usuário reutilizáveis e estilos criados com Jetpack Compose.
-* **Navigation:** Gerencia a navegação entre telas usando a biblioteca de navegação do Jetpack.
+* **Navigation:** Gerencia a navegação entre os modulos usando a biblioteca de navegação do Jetpack.
 * **Feature-Products:** Implementa a funcionalidade de busca e exibição de produtos.
 
 ## Arquitetura Limpa
