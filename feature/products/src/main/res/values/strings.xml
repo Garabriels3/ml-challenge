@@ -7,4 +7,5 @@
 
     <string name="product_detail_buy_now_label">Comprar agora</string>
     <string name="product_detail_pay_marketing_label">Pague via Mercado Pago!</string>
+    <string name="title_activity_fake_main">FakeMainActivity</string>
 </resources>

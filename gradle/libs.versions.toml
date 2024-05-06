@@ -36,6 +36,7 @@ viewpager = "1.0.0"
 accompanistPager = "0.13.0"
 accompanistPagerIndicators = "0.13.0"
 junitKtx = "1.1.5"
+uiTestJunit4Android = "1.6.7"
 
 
 [libraries]
