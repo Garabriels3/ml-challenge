@@ -37,10 +37,18 @@ jobs:
         continue-on-error: true
 
       - name: Setup reviewdog
-        uses: reviewdog/action-setup@v1.3.0          
+        uses: reviewdog/action-setup@v1.3.0
+
+      - name: Run Detekt with Reviewdog
+        run: ./gradlew detekt --continue --quiet --console plain | ./bin/reviewdog -f=checkstyle -name="detekt" -reporter=github-pr-review
+        continue-on-error: true
 
       - name: Lint - Static Code Analysis (opcional)
         run: ./gradlew lintDebug
+
+      - name: Run Lint with Reviewdog
+        run: ./gradlew lintDebug --continue --quiet --console plain | ./bin/reviewdog -f=checkstyle -name="Android Lint" -reporter=github-pr-review
+        continue-on-error: true
 
       - name: Run unit tests
         run: ./gradlew testDebugUnitTest
