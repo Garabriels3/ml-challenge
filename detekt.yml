@@ -16,6 +16,9 @@ reports:
   sarif:
     enabled: true
     destination: path/to/detekt.sarif # Caminho para o relatório SARIF
+  checkstyle:
+    enabled: true
+    destination: "build/reports/detekt/checkstyle.xml"
 
 complexity:
   ComplexMethod:
