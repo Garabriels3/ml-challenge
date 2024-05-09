@@ -58,6 +58,8 @@ fun SearchBarComponent(
     placeholder: String?,
     readOnly: Boolean = false,
     searchButtonState: ImeAction = ImeAction.None,
+    suffixIcon: Int? = null,
+    onClickSuffixIcon: (() -> Unit)? = null,
     onClickSearchKeyboard: ((String) -> Unit) = {},
     onCancelClick: (() -> Unit)? = null,
     onValueChange: (String) -> Unit = {},
@@ -106,6 +108,15 @@ fun SearchBarComponent(
                 placeholder = placeholder,
                 onValueChange = onValueChange,
             )
+            if (onClickSuffixIcon != null && suffixIcon != null) {
+                Spacer(modifier = Modifier.width(Sizing.scale16))
+                Icon(
+                    painter = painterResource(id = suffixIcon),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .clickable { onClickSuffixIcon() }
+                )
+            }
             if (onCancelClick != null && value.isNotEmpty()) {
                 TextButton(
                     modifier = Modifier.weight(0.7f),

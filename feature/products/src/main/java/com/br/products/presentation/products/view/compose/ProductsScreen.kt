@@ -39,8 +39,12 @@ fun ProductsScreen(
                 value = state.uiModel.searchedTerm,
                 readOnly = true,
                 placeholder = stringResource(id = R.string.products_search_bar_placeholder),
+                suffixIcon = state.uiModel.productsOrientation.value,
                 onBackNavigation = {
                     triggerAction(ProductsUiAction.OnClickSearchBarAction)
+                },
+                onClickSuffixIcon = {
+                    triggerAction(ProductsUiAction.OnProductsOrientationClickAction(state.uiModel.productsOrientation))
                 },
             )
         },
@@ -52,7 +56,7 @@ fun ProductsScreen(
         Column(modifier = Modifier.fillMaxSize()) {
             when (state) {
                 is ProductsUiState.OnResumedGridState -> {
-                    ListProductsComponent(
+                    GridProductsComponent(
                         paddingValues = noBottomPadding,
                         pagingProducts = products,
                         triggerAction = triggerAction

@@ -11,6 +11,7 @@ import com.br.products.R
 import com.br.products.domain.model.ProductItemDomain
 import com.br.products.domain.usecase.products.GetProductsUseCase
 import com.br.products.presentation.model.ProductUi
+import com.br.products.presentation.products.udf.ProductsOrientation
 import com.br.products.presentation.products.udf.ProductsUiAction
 import com.br.products.presentation.products.udf.ProductsUiModel
 import com.br.products.presentation.products.udf.ProductsUiSideEffect
@@ -53,6 +54,21 @@ class ProductsViewModel(
 
             is ProductsUiAction.OnProductClickAction -> {
                 _uiSideEffect.emit(ProductsUiSideEffect.OnNavigateToDetailEffect(action.productId))
+            }
+            is ProductsUiAction.OnProductsOrientationClickAction -> {
+                if (action.orientation == ProductsOrientation.GRID) {
+                    _uiState.value = ProductsUiState.OnResumedGridState(
+                        getCurrentUiModel().copy(
+                            productsOrientation = ProductsOrientation.LIST
+                        )
+                    )
+                } else {
+                    _uiState.value = ProductsUiState.OnResumedListState(
+                        getCurrentUiModel().copy(
+                            productsOrientation = ProductsOrientation.GRID
+                        )
+                    )
+                }
             }
         }
     }

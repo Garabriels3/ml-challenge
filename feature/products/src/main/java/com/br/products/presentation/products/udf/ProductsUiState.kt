@@ -9,8 +9,14 @@ data class ProductsUiModel(
     val error: String? = null,
     val searchedTerm: String = "",
     val totalProducts: Int = 0,
+    val productsOrientation: ProductsOrientation = ProductsOrientation.LIST,
     val products: Flow<PagingData<ProductUi>> = flowOf(PagingData.empty()),
 )
+
+enum class ProductsOrientation(val value: Int) {
+    GRID(com.br.design_system.R.drawable.ic_grid),
+    LIST(com.br.design_system.R.drawable.ic_list)
+}
 
 sealed class ProductsUiState(open val uiModel: ProductsUiModel) {
     data class OnLoadingState(override val uiModel: ProductsUiModel) : ProductsUiState(uiModel)
