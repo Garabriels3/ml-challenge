@@ -11,6 +11,7 @@ import com.br.products.R
 import com.br.products.domain.model.ProductItemDomain
 import com.br.products.domain.usecase.products.GetProductsUseCase
 import com.br.products.presentation.model.ProductUi
+import com.br.products.presentation.products.udf.ProductsOrientation
 import com.br.products.presentation.products.udf.ProductsUiAction
 import com.br.products.presentation.products.udf.ProductsUiModel
 import com.br.products.presentation.products.udf.ProductsUiSideEffect
@@ -216,6 +217,35 @@ class ProductsViewModelTest {
         }
     }
 
+    @Test
+    fun `OnProductsOrientationClickAction when is LIST orientation should change orientation to GRID`() = runTest {
+        // Given
+        val orientation = ProductsOrientation.LIST
+        val expectedOrientation = ProductsOrientation.GRID
+
+        // When
+        viewModel.handleAction(ProductsUiAction.OnProductsOrientationClickAction(orientation))
+
+        // Then
+        val actualOrientation =
+            (viewModel.uiState.value as? ProductsUiState.OnResumedListState)?.uiModel?.productsOrientation
+        assertEquals(expectedOrientation, actualOrientation)
+    }
+
+    @Test
+    fun `OnProductsOrientationClickAction when is GRID orientation should change orientation to LIST`() = runTest {
+        // Given
+        val orientation = ProductsOrientation.GRID
+        val expectedOrientation = ProductsOrientation.LIST
+
+        // When
+        viewModel.handleAction(ProductsUiAction.OnProductsOrientationClickAction(orientation))
+
+        // Then
+        val actualOrientation =
+            (viewModel.uiState.value as? ProductsUiState.OnResumedGridState)?.uiModel?.productsOrientation
+        assertEquals(expectedOrientation, actualOrientation)
+    }
 
     private fun productUiModelMock(
         searchedTerm: String = "",

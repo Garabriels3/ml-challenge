@@ -35,7 +35,7 @@ fun ImageFetchComponent(
             .build(),
         contentDescription = null,
         placeholder = painterResource(id = placeholder),
-        contentScale = ContentScale.FillHeight,
+        contentScale = ContentScale.Fit,
     )
 }
 

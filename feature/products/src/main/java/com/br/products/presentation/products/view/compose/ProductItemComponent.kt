@@ -1,12 +1,17 @@
 package com.br.products.presentation.products.view.compose
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,6 +26,7 @@ import com.br.design_system.theme.ColorApp
 import com.br.design_system.theme.FontSize
 import com.br.design_system.theme.MlChallengeTheme
 import com.br.design_system.theme.Spacing
+import com.br.infra.coroutines.ext.toHttpsUri
 import com.br.products.R
 import com.br.products.presentation.model.ProductUi
 import com.br.products.presentation.products.udf.ProductsUiAction
@@ -28,58 +34,62 @@ import com.br.products.presentation.products.udf.ProductsUiAction
 @Composable
 fun ProductListItemComponent(productUi: ProductUi, onItemClick: (ProductsUiAction) -> Unit = {}) {
     val freeShippingMessage = productUi.freeShipping?.let { stringResource(id = it) }
-    Row(
+    Box(
         modifier = Modifier
             .clickable {
                 onItemClick(ProductsUiAction.OnProductClickAction(productId = productUi.id))
             }
             .fillMaxWidth()
-            .padding(Spacing.scale16),
-        horizontalArrangement = Arrangement.Start,
-        verticalAlignment = Alignment.CenterVertically
+            .background(ColorApp.surface)
     ) {
-        ImageFetchComponent(
-            modifier = Modifier
-                .height(100.dp)
-                .padding(end = Spacing.scale8),
-            imageUrl = productUi.imageUrl,
-        )
-        Column(modifier = Modifier.weight(1f)) {
-            if (!freeShippingMessage.isNullOrEmpty()) {
+        Row(
+            modifier = Modifier.padding(Spacing.scale16),
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            ImageFetchComponent(
+                modifier = Modifier
+                    .size(72.dp)
+                    .padding(end = Spacing.scale8),
+                imageUrl = productUi.imageUrl.toHttpsUri(),
+            )
+            Column(modifier = Modifier.weight(3f)) {
+                if (!freeShippingMessage.isNullOrEmpty()) {
+                    Text(
+                        text = freeShippingMessage,
+                        textAlign = TextAlign.Start,
+                        fontSize = FontSize.scale3Xs,
+                        color = ColorApp.textGreen,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
                 Text(
-                    text = freeShippingMessage,
+                    text = productUi.name,
                     textAlign = TextAlign.Start,
-                    fontSize = FontSize.scale3Xs,
-                    color = ColorApp.textGreen,
+                    fontSize = FontSize.scale2Xs,
+                    color = ColorApp.textOnSurface,
                     fontWeight = FontWeight.Bold
                 )
+                Text(
+                    text = productUi.price,
+                    textAlign = TextAlign.Start,
+                    fontSize = FontSize.scaleXs,
+                    color = ColorApp.textOnSurface
+                )
             }
-            Text(
-                text = productUi.name,
-                textAlign = TextAlign.Start,
-                fontSize = FontSize.scale2Xs,
-                color = ColorApp.textOnSurface,
-                fontWeight = FontWeight.Bold
-            )
-            Text(
-                text = productUi.price,
-                textAlign = TextAlign.Start,
-                fontSize = FontSize.scaleXs,
-                color = ColorApp.textOnSurface
-            )
-        }
-        Column(modifier = Modifier.align(Alignment.Bottom)) { // Align content at the bottom
-            Text(
-                text = "${productUi.availableQuantity} restantes",
-                textAlign = TextAlign.Start,
-                fontSize = FontSize.scale3Xs,
-                color = ColorApp.textOnPrimary
-            )
-            Text(
-                text = productUi.condition,
-                fontSize = FontSize.scale4Xs,
-                color = ColorApp.textOnSurface
-            )
+            Column(modifier = Modifier.align(Alignment.Bottom)) { // Align content at the bottom
+                Text(
+                    text = "${productUi.availableQuantity} restantes",
+                    textAlign = TextAlign.Start,
+                    fontSize = FontSize.scale3Xs,
+                    color = ColorApp.textOnPrimary
+                )
+                Text(
+                    text = productUi.condition,
+                    fontSize = FontSize.scale4Xs,
+                    color = ColorApp.textOnSurface
+                )
+            }
         }
     }
 }
