@@ -52,7 +52,7 @@ fun ProductsScreen(
         Column(modifier = Modifier.fillMaxSize()) {
             when (state) {
                 is ProductsUiState.OnResumedGridState -> {
-                    GridProductsComponent(
+                    ListProductsComponent(
                         paddingValues = noBottomPadding,
                         pagingProducts = products,
                         triggerAction = triggerAction
