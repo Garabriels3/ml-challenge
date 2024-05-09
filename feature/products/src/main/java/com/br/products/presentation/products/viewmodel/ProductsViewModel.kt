@@ -56,20 +56,24 @@ class ProductsViewModel(
                 _uiSideEffect.emit(ProductsUiSideEffect.OnNavigateToDetailEffect(action.productId))
             }
             is ProductsUiAction.OnProductsOrientationClickAction -> {
-                if (action.orientation == ProductsOrientation.GRID) {
-                    _uiState.value = ProductsUiState.OnResumedGridState(
-                        getCurrentUiModel().copy(
-                            productsOrientation = ProductsOrientation.LIST
-                        )
-                    )
-                } else {
-                    _uiState.value = ProductsUiState.OnResumedListState(
-                        getCurrentUiModel().copy(
-                            productsOrientation = ProductsOrientation.GRID
-                        )
-                    )
-                }
+                onChangeProductsOrientation(action.orientation)
             }
+        }
+    }
+
+    private fun onChangeProductsOrientation(orientation: ProductsOrientation) {
+        if (orientation == ProductsOrientation.GRID) {
+            _uiState.value = ProductsUiState.OnResumedGridState(
+                getCurrentUiModel().copy(
+                    productsOrientation = ProductsOrientation.LIST
+                )
+            )
+        } else {
+            _uiState.value = ProductsUiState.OnResumedListState(
+                getCurrentUiModel().copy(
+                    productsOrientation = ProductsOrientation.GRID
+                )
+            )
         }
     }
 
