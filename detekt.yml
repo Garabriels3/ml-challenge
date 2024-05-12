@@ -16,5 +16,34 @@ reports:
   sarif:
     enabled: true
     destination: path/to/detekt.sarif # Caminho para o relatório SARIF
+  checkstyle:
+    enabled: true
+    destination: "build/reports/detekt/checkstyle.xml"
 
-# Definir as regras aqui...
+complexity:
+  ComplexMethod:
+    active: true
+    threshold: 10
+  LargeClass:
+    active: true
+    threshold: 600
+
+naming:
+  NamingConventionViolation:
+    active: true
+
+potential-problems:
+  ExplicitGarbageCollectionCall:
+    active: true
+  LateinitUsage:
+    active: true
+  UncheckedCast:
+    active: true
+
+style:
+  SpacingAroundComma:
+    active: true
+  NoTrailingSpaces:
+    active: true
+  NoMultipleSpaces:
+    active: true
